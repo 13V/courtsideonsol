@@ -20,10 +20,18 @@ export const useSportsProgram = () => {
                 preflightCommitment: "processed",
             });
 
-            // Standard constructor for Anchor 0.30+
-            return new Program(idl as any, provider);
+            // Log IDL details for debugging
+            const cleanIdl = JSON.parse(JSON.stringify(idl));
+            console.log("useSportsProgram: Initializing with IDL address", cleanIdl.address);
+            console.log("useSportsProgram: IDL check - Accounts:", cleanIdl.accounts?.map((a: any) => a.name));
+            console.log("useSportsProgram: IDL check - Instructions:", cleanIdl.instructions?.map((i: any) => i.name));
+
+            // In Anchor 0.30+, Program constructor takes (idl, provider)
+            // The address is pulled from idl.address
+            return new Program(cleanIdl, provider);
         } catch (e: any) {
-            console.error("useSportsProgram Error:", e.message);
+            console.error("useSportsProgram ERROR:", e.message);
+            console.error("Stack:", e.stack);
             return null;
         }
     }, [connection, wallet]);

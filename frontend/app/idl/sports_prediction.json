@@ -170,7 +170,7 @@
     ],
     "accounts": [
         {
-            "name": "market",
+            "name": "Market",
             "type": {
                 "kind": "struct",
                 "fields": [
@@ -224,7 +224,7 @@
             }
         },
         {
-            "name": "userBet",
+            "name": "UserBet",
             "type": {
                 "kind": "struct",
                 "fields": [
