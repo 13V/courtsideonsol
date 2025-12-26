@@ -209,6 +209,7 @@ pub struct InitializeMarket<'info> {
     pub system_program: Program<'info, System>,
 }
 
+// Place bet accounts
 #[derive(Accounts)]
 pub struct PlaceBet<'info> {
     #[account(
