@@ -171,6 +171,34 @@
     "accounts": [
         {
             "name": "Market",
+            "discriminator": [
+                219,
+                190,
+                213,
+                55,
+                0,
+                227,
+                198,
+                154
+            ]
+        },
+        {
+            "name": "UserBet",
+            "discriminator": [
+                180,
+                131,
+                8,
+                241,
+                60,
+                243,
+                46,
+                63
+            ]
+        }
+    ],
+    "types": [
+        {
+            "name": "Market",
             "type": {
                 "kind": "struct",
                 "fields": [
@@ -250,9 +278,7 @@
                     }
                 ]
             }
-        }
-    ],
-    "types": [
+        },
         {
             "name": "MarketStatus",
             "type": {
