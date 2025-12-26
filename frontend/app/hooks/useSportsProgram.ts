@@ -2,11 +2,8 @@
 
 import { useMemo } from "react";
 import { useConnection, useAnchorWallet } from "@solana/wallet-adapter-react";
-import { AnchorProvider, Program, Idl } from "@coral-xyz/anchor";
-import { PublicKey } from "@solana/web3.js";
+import { AnchorProvider, Program } from "@coral-xyz/anchor";
 import idl from "../idl/sports_prediction.json";
-
-const PROGRAM_ID = new PublicKey("5oCaNW77tTwpAdZqhyebZ73zwm1DtfR3Ye7Cy9VWyqtT"); // Placeholder, should be the deployed ID
 
 export const useSportsProgram = () => {
     const { connection } = useConnection();
@@ -15,13 +12,14 @@ export const useSportsProgram = () => {
     const program = useMemo(() => {
         if (!wallet) return null;
 
-        const provider = new AnchorProvider(connection, wallet, {
-            preflightCommitment: "processed",
-        });
+        const provider = new AnchorProvider(connection, wallet, AnchorProvider.defaultOptions());
 
         try {
-            const programId = new PublicKey("5oCaNW77tTwpAdZqhyebZ73zwm1DtfR3Ye7Cy9VWyqtT");
-            console.log("Initializing Program with ID:", programId.toString());
+            // Anchor 0.30+ IDL initialization
+            const programId = idl.address;
+            if (!programId) {
+                console.warn("No address found in IDL metadata");
+            }
             return new Program(idl as any, provider);
         } catch (e) {
             console.error("Failed to initialize Program:", e);
