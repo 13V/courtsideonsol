@@ -5,7 +5,7 @@ resolution = true
 skip-lint = false
 
 [programs.mainnet]
-sports_prediction = "GvC6eD5B6z9M1vRzT1p7fQyYvA5xP7Z1aB2c3D4e5F6g"
+sports_prediction = "5oCaNW77tTwpAdZqhyebZ73zwm1DtfR3Ye7Cy9VWyqtT"
 
 [registry]
 url = "https://api.apr.dev"

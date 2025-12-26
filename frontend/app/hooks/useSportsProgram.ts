@@ -6,7 +6,7 @@ import { AnchorProvider, Program, Idl } from "@coral-xyz/anchor";
 import { PublicKey } from "@solana/web3.js";
 import idl from "../idl/sports_prediction.json";
 
-const PROGRAM_ID = new PublicKey("GvC6eD5B6z9M1vRzT1p7fQyYvA5xP7Z1aB2c3D4e5F6g"); // Placeholder, should be the deployed ID
+const PROGRAM_ID = new PublicKey("5oCaNW77tTwpAdZqhyebZ73zwm1DtfR3Ye7Cy9VWyqtT"); // Placeholder, should be the deployed ID
 
 export const useSportsProgram = () => {
     const { connection } = useConnection();
@@ -19,7 +19,7 @@ export const useSportsProgram = () => {
             preflightCommitment: "processed",
         });
 
-        return new Program(idl as Idl, PROGRAM_ID, provider);
+        return new Program(idl as any, provider);
     }, [connection, wallet]);
 
     return { program };
