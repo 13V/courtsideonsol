@@ -11,18 +11,30 @@ export const useSportsProgram = () => {
     const wallet = useAnchorWallet();
 
     const program = useMemo(() => {
-        if (!wallet) return null;
+        console.log("useSportsProgram: Checking wallet...", wallet?.publicKey?.toString());
 
-        const provider = new AnchorProvider(connection, wallet, {
-            preflightCommitment: "processed",
-        });
+        if (!wallet || !wallet.publicKey) {
+            console.log("useSportsProgram: No wallet or publicKey found.");
+            return null;
+        }
 
         try {
-            // Convert IDL to a plain JS object to bypass module-specific behavior
+            const provider = new AnchorProvider(connection, wallet, {
+                preflightCommitment: "processed",
+            });
+
+            console.log("useSportsProgram: Initializing Program with provider...");
+
+            // Convert IDL to a plain JS object
             const rawIdl = JSON.parse(JSON.stringify(idl));
-            return new Program(rawIdl, provider);
-        } catch (e) {
-            console.error("Failed to initialize Program:", e);
+            const p = new Program(rawIdl, provider);
+
+            console.log("useSportsProgram: Program initialized successfully!");
+            return p;
+        } catch (e: any) {
+            console.error("useSportsProgram: CRITICAL FAILURE during Program initialization!");
+            console.error("Error message:", e.message);
+            console.error("Error stack:", e.stack);
             return null;
         }
     }, [connection, wallet]);
