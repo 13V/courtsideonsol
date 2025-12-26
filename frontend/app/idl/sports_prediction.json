@@ -1,0 +1,317 @@
+{
+    "version": "0.1.0",
+    "name": "sports_prediction",
+    "instructions": [
+        {
+            "name": "initializeMarket",
+            "accounts": [
+                {
+                    "name": "market",
+                    "isMut": true,
+                    "isSigner": false
+                },
+                {
+                    "name": "vault",
+                    "isMut": true,
+                    "isSigner": false
+                },
+                {
+                    "name": "authority",
+                    "isMut": true,
+                    "isSigner": true
+                },
+                {
+                    "name": "systemProgram",
+                    "isMut": false,
+                    "isSigner": false
+                }
+            ],
+            "args": [
+                {
+                    "name": "eventId",
+                    "type": "string"
+                },
+                {
+                    "name": "oracleFeed",
+                    "type": "publicKey"
+                },
+                {
+                    "name": "devWallet",
+                    "type": "publicKey"
+                },
+                {
+                    "name": "endTime",
+                    "type": "i64"
+                }
+            ]
+        },
+        {
+            "name": "placeBet",
+            "accounts": [
+                {
+                    "name": "market",
+                    "isMut": true,
+                    "isSigner": false
+                },
+                {
+                    "name": "vault",
+                    "isMut": true,
+                    "isSigner": false
+                },
+                {
+                    "name": "userBet",
+                    "isMut": true,
+                    "isSigner": false
+                },
+                {
+                    "name": "user",
+                    "isMut": true,
+                    "isSigner": true
+                },
+                {
+                    "name": "systemProgram",
+                    "isMut": false,
+                    "isSigner": false
+                }
+            ],
+            "args": [
+                {
+                    "name": "outcomeId",
+                    "type": "u8"
+                },
+                {
+                    "name": "amount",
+                    "type": "u64"
+                }
+            ]
+        },
+        {
+            "name": "lockMarket",
+            "accounts": [
+                {
+                    "name": "market",
+                    "isMut": true,
+                    "isSigner": false
+                },
+                {
+                    "name": "authority",
+                    "isMut": false,
+                    "isSigner": true
+                }
+            ],
+            "args": []
+        },
+        {
+            "name": "settleMarket",
+            "accounts": [
+                {
+                    "name": "market",
+                    "isMut": true,
+                    "isSigner": false
+                },
+                {
+                    "name": "authority",
+                    "isMut": false,
+                    "isSigner": true
+                }
+            ],
+            "args": [
+                {
+                    "name": "winningOutcome",
+                    "type": "u8"
+                }
+            ]
+        },
+        {
+            "name": "claimWinnings",
+            "accounts": [
+                {
+                    "name": "market",
+                    "isMut": true,
+                    "isSigner": false
+                },
+                {
+                    "name": "vault",
+                    "isMut": true,
+                    "isSigner": false
+                },
+                {
+                    "name": "devWallet",
+                    "isMut": true,
+                    "isSigner": false
+                },
+                {
+                    "name": "userBet",
+                    "isMut": true,
+                    "isSigner": false
+                },
+                {
+                    "name": "user",
+                    "isMut": true,
+                    "isSigner": true
+                },
+                {
+                    "name": "owner",
+                    "isMut": false,
+                    "isSigner": false
+                },
+                {
+                    "name": "systemProgram",
+                    "isMut": false,
+                    "isSigner": false
+                }
+            ],
+            "args": []
+        }
+    ],
+    "accounts": [
+        {
+            "name": "Market",
+            "type": {
+                "kind": "struct",
+                "fields": [
+                    {
+                        "name": "eventId",
+                        "type": "string"
+                    },
+                    {
+                        "name": "oracleFeed",
+                        "type": "publicKey"
+                    },
+                    {
+                        "name": "devWallet",
+                        "type": "publicKey"
+                    },
+                    {
+                        "name": "poolA",
+                        "type": "u64"
+                    },
+                    {
+                        "name": "poolB",
+                        "type": "u64"
+                    },
+                    {
+                        "name": "totalPool",
+                        "type": "u64"
+                    },
+                    {
+                        "name": "endTime",
+                        "type": "i64"
+                    },
+                    {
+                        "name": "status",
+                        "type": {
+                            "defined": "MarketStatus"
+                        }
+                    },
+                    {
+                        "name": "authority",
+                        "type": "publicKey"
+                    },
+                    {
+                        "name": "winningOutcome",
+                        "type": "u8"
+                    },
+                    {
+                        "name": "vaultBump",
+                        "type": "u8"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "UserBet",
+            "type": {
+                "kind": "struct",
+                "fields": [
+                    {
+                        "name": "market",
+                        "type": "publicKey"
+                    },
+                    {
+                        "name": "owner",
+                        "type": "publicKey"
+                    },
+                    {
+                        "name": "outcomeId",
+                        "type": "u8"
+                    },
+                    {
+                        "name": "amount",
+                        "type": "u64"
+                    },
+                    {
+                        "name": "claimed",
+                        "type": "bool"
+                    }
+                ]
+            }
+        }
+    ],
+    "types": [
+        {
+            "name": "MarketStatus",
+            "type": {
+                "kind": "enum",
+                "variants": [
+                    {
+                        "name": "Open"
+                    },
+                    {
+                        "name": "Locked"
+                    },
+                    {
+                        "name": "Settled"
+                    }
+                ]
+            }
+        }
+    ],
+    "errors": [
+        {
+            "code": 6000,
+            "name": "MarketNotOpen",
+            "msg": "Market is not open for betting"
+        },
+        {
+            "code": 6001,
+            "name": "MarketLocked",
+            "msg": "Market is locked"
+        },
+        {
+            "code": 6002,
+            "name": "MarketNotSettled",
+            "msg": "Market is not settled yet"
+        },
+        {
+            "code": 6003,
+            "name": "MarketExpired",
+            "msg": "Betting period has expired"
+        },
+        {
+            "code": 6004,
+            "name": "Unauthorized",
+            "msg": "Unauthorized action"
+        },
+        {
+            "code": 6005,
+            "name": "InvalidOutcome",
+            "msg": "Invalid outcome ID"
+        },
+        {
+            "code": 6006,
+            "name": "AlreadyClaimed",
+            "msg": "Already claimed winnings"
+        },
+        {
+            "code": 6007,
+            "name": "LostBet",
+            "msg": "This bet did not win"
+        },
+        {
+            "code": 6008,
+            "name": "InconsistentState",
+            "msg": "Internal state inconsistency"
+        }
+    ]
+}

@@ -1,0 +1,57 @@
+@import "tailwindcss";
+
+@theme {
+  --color-kayo-green: #40f87f;
+  --color-kayo-sea: #052942;
+  --color-kayo-dark: #0a0a0a;
+  --color-kayo-gray: #1a1a1a;
+  --color-kayo-gold: #fbbf24;
+
+  --font-display: "Barlow Condensed", var(--font-sans);
+}
+
+:root {
+  --background: #020617;
+  --foreground: #ffffff;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: inherit;
+  overflow-x: hidden;
+}
+
+@utility glass-card {
+  background: var(--color-glass);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--color-glass-border);
+  border-radius: 1.5rem;
+}
+
+@utility arena-gradient {
+  background: radial-gradient(circle at center, var(--color-arena-green) 0%, transparent 70%);
+  opacity: 0.15;
+}
+
+@utility text-glow {
+  text-shadow: 0 0 20px rgba(16, 185, 129, 0.5);
+}
+
+@keyframes neon-pulse {
+  0% {
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.2), inset 0 0 5px rgba(0, 255, 0, 0.1);
+  }
+
+  50% {
+    box-shadow: 0 0 25px rgba(0, 255, 0, 0.5), inset 0 0 10px rgba(0, 255, 0, 0.2);
+  }
+
+  100% {
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.2), inset 0 0 5px rgba(0, 255, 0, 0.1);
+  }
+}
+
+.neon-pulse-brand:hover {
+  animation: neon-pulse 3s infinite ease-in-out;
+}
