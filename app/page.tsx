@@ -418,9 +418,12 @@ export default function Home() {
         });
       });
 
-      const marketAccounts = await (program.account as any).market.fetchMultiple(pdaRequests.map(r => r.pda));
-      const marketMap = new Map();
+      console.log(`Home: requesting PDAs for ${markets.length} markets.`, pdaRequests.map(r => r.id));
 
+      const marketAccounts = await (program.account as any).market.fetchMultiple(pdaRequests.map(r => r.pda));
+      console.log(`Home: received ${marketAccounts.filter((a: any) => a !== null).length} active on-chain accounts.`);
+
+      const marketMap = new Map();
       pdaRequests.forEach((req, i) => {
         if (marketAccounts[i]) {
           marketMap.set(req.id, marketAccounts[i]);

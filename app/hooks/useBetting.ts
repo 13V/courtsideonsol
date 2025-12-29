@@ -67,7 +67,7 @@ export const useBetting = () => {
 
             // 3. Derive UserBet PDA
             const [userBetPda] = PublicKey.findProgramAddressSync(
-                [encoder.encode("bet"), marketPda.toBuffer(), publicKey.toBuffer()],
+                [encoder.encode("bet"), marketPda.toBytes(), publicKey.toBytes()],
                 program.programId
             );
 
@@ -112,7 +112,7 @@ export const useBetting = () => {
             );
 
             const [userBetPda] = PublicKey.findProgramAddressSync(
-                [encoder.encode("bet"), marketPda.toBuffer(), publicKey.toBuffer()],
+                [encoder.encode("bet"), marketPda.toBytes(), publicKey.toBytes()],
                 program.programId
             );
 

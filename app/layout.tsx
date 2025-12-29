@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Barlow_Condensed } from "next/font/google";
 import "./globals.css";
 import SolanaProvider from "./components/SolanaProvider";
+import Polyfill from "./components/Polyfill";
 
 const inter = Inter({
   variable: "--font-sans",
@@ -31,6 +32,7 @@ export default function RootLayout({
         suppressHydrationWarning
       >
         <SolanaProvider>
+          <Polyfill />
           {children}
         </SolanaProvider>
       </body>
