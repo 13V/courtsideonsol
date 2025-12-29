@@ -411,8 +411,8 @@ export default function Home() {
         );
         pdaRequests.push({ id: m.id, pda });
 
-        // Potential V2/V3 versions
-        [2, 3].forEach(v => {
+        // Potential V2/V3/V4/V5 versions
+        [2, 3, 4, 5].forEach(v => {
           const [vpda] = PublicKey.findProgramAddressSync(
             [encoder.encode("market"), encoder.encode(`${m.id}-v${v}`)],
             program.programId
@@ -474,12 +474,13 @@ export default function Home() {
     setBetOutcome(outcomeId);
   };
 
-  // Smart On-Chain Lookup (Handles V2/V3 versions)
+  // Smart On-Chain Lookup (Handles multiple versions V2, V3, V4, v5)
   const getActiveMarketStatus = (marketId: string) => {
-    const v3 = onChainMarkets.get(`${marketId}-v3`);
-    if (v3) return { status: v3.status, id: `${marketId}-v3` };
-    const v2 = onChainMarkets.get(`${marketId}-v2`);
-    if (v2) return { status: v2.status, id: `${marketId}-v2` };
+    // Check in reverse order to find the latest version first
+    for (let v = 5; v >= 2; v--) {
+      const versioned = onChainMarkets.get(`${marketId}-v${v}`);
+      if (versioned) return { status: versioned.status, id: `${marketId}-v${v}` };
+    }
     const base = onChainMarkets.get(marketId);
     if (base) return { status: base.status, id: marketId };
     return null;
@@ -527,18 +528,32 @@ export default function Home() {
   const handleInitialize = async (market: Market) => {
     console.log("Home: handleInitialize triggered", market.id);
     try {
-      // Check if we need to version-up due to ghost settlement
+      // Find the next available version if current one is settled (Ghost Settlement)
       const current = getActiveMarketStatus(market.id);
       let targetId = market.id;
-      if (current && current.status?.settled) {
-        // Find next version
-        if (current.id.endsWith("-v2")) targetId = `${market.id}-v3`;
-        else targetId = `${market.id}-v2`;
-        console.log("Re-initializing Ghost Settled market as:", targetId);
+
+      if (current) {
+        if (current.status?.open) {
+          alert("This market is already LIVE and OPEN on Solana.");
+          return;
+        }
+
+        if (current.status?.settled) {
+          // Find next available version ID by checking on-chain map
+          let version = 2;
+          // Loop until we find an ID that hasn't been used yet
+          while (onChainMarkets.has(`${market.id}-v${version}`)) {
+            version++;
+          }
+          targetId = `${market.id}-v${version}`;
+          console.log(`Re-initializing Ghost/Settled market as new version: ${targetId}`);
+        }
       }
 
       // Default end time to 24 hours from now if missing
       const endTime = market.startDate ? new Date(market.startDate).getTime() / 1000 : (Date.now() / 1000) + 86400;
+
+      console.log(`Home: Initializing market ${targetId} with end_time ${endTime}`);
       await initializeMarket(targetId, Math.floor(endTime));
 
       // Update local state immediately with a placeholder status
@@ -547,10 +562,22 @@ export default function Home() {
         next.set(targetId, { status: { open: {} }, eventId: targetId });
         return next;
       });
-      alert("Market initialized successfully!");
-    } catch (err) {
+      alert(`Market ${targetId} initialized successfully!`);
+    } catch (err: any) {
       console.error("Home: handleInitialize error", err);
-      alert("Failed to initialize market. Check console for details.");
+
+      // CUSTOM LOG EXTRACTION
+      let logMsg = "";
+      if (err.logs) {
+        logMsg = "\n\nProgram Logs:\n" + err.logs.join("\n");
+      } else if (err.getLogs) {
+        try {
+          const logs = await err.getLogs();
+          logMsg = "\n\nDetailed Logs:\n" + logs.join("\n");
+        } catch (e) { /* ignore */ }
+      }
+
+      alert(`Failed to initialize market.${logMsg || "\nCheck console for details."}`);
     }
   };
 
