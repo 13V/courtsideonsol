@@ -13,7 +13,8 @@ import {
   Shield,
   CreditCard,
   ExternalLink,
-  Check
+  Check,
+  Copy
 } from 'lucide-react';
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import { useWallet } from "@solana/wallet-adapter-react";
@@ -362,6 +363,15 @@ export default function Home() {
   const { getScoreForMarket } = useLiveScores();
   const [claimTxs, setClaimTxs] = useState<Record<string, string>>({});
   const [isSuccess, setIsSuccess] = useState(false);
+  const [caCopied, setCaCopied] = useState(false);
+
+  const TOKEN_CA = "2Lsf4sotbHDYdK2VccRzccEZ2u94QRejucvtYfyjpump";
+
+  const handleCopyCA = () => {
+    navigator.clipboard.writeText(TOKEN_CA);
+    setCaCopied(true);
+    setTimeout(() => setCaCopied(false), 2000);
+  };
 
   useEffect(() => {
     const timer = setTimeout(() => setMounted(true), 0);
@@ -591,11 +601,33 @@ export default function Home() {
       {/* NAV */}
       <nav className="fixed top-0 w-full z-50 bg-[#050505]/80 backdrop-blur-2xl border-b border-white/5">
         <div className="max-w-[1600px] mx-auto px-10 h-24 flex items-center justify-between">
-          <div className="flex items-center gap-4 group cursor-pointer">
-            <div className="w-10 h-10 bg-[#00FF00] rounded-xl flex items-center justify-center transform group-hover:rotate-12 transition-all">
-              <Zap className="w-6 h-6 text-black fill-current" />
+          <div className="flex items-center gap-6">
+            <div className="flex items-center gap-4 group cursor-pointer">
+              <div className="w-10 h-10 bg-[#00FF00] rounded-xl flex items-center justify-center transform group-hover:rotate-12 transition-all">
+                <Zap className="w-6 h-6 text-black fill-current" />
+              </div>
+              <span className="font-black text-2xl tracking-tighter italic">COURTSIDE</span>
             </div>
-            <span className="font-black text-2xl tracking-tighter italic">COURTSIDE</span>
+
+            {/* TOKEN CA PILL */}
+            <div
+              onClick={handleCopyCA}
+              className="hidden lg:flex items-center gap-3 px-4 py-2 bg-white/5 border border-white/10 rounded-2xl hover:bg-white/10 transition-all cursor-pointer group/ca"
+            >
+              <div className="flex flex-col">
+                <span className="text-[7px] font-black italic tracking-[0.2em] text-[#00FF00] uppercase mb-0.5">CONTRACT ADDRESS</span>
+                <span className="text-[10px] font-mono text-white/60 group-hover/ca:text-white transition-colors uppercase">
+                  {TOKEN_CA.slice(0, 6)}...{TOKEN_CA.slice(-4)}
+                </span>
+              </div>
+              <div className="w-8 h-8 rounded-xl bg-white/5 flex items-center justify-center group-hover/ca:bg-[#00FF00] transition-all">
+                {caCopied ? (
+                  <Check className="w-3 h-3 text-black" />
+                ) : (
+                  <Copy className="w-3 h-3 text-white group-hover/ca:text-black transition-colors" />
+                )}
+              </div>
+            </div>
           </div>
 
           <div className="flex items-center gap-8">
