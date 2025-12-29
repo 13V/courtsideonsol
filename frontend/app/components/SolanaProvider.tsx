@@ -12,8 +12,11 @@ import { clusterApiUrl } from "@solana/web3.js";
 import "@solana/wallet-adapter-react-ui/styles.css";
 
 export default function SolanaProvider({ children }: { children: React.ReactNode }) {
-    // MAINNET-BETA for production deployment
-    const endpoint = useMemo(() => clusterApiUrl("mainnet-beta"), []);
+    // Use private QuickNode RPC if available via env, fallback to hardcoded QuickNode as default to resolve 403
+    const endpoint = useMemo(() =>
+        process.env.NEXT_PUBLIC_SOLANA_RPC_URL ||
+        "https://mainnet.helius-rpc.com/?api-key=026544e2-2acd-499a-84f1-51d00ecbb3f9",
+        []);
 
     // Empty wallets array - users can install Phantom/Solflare extensions
     const wallets = useMemo(() => [], []);

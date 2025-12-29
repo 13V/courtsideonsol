@@ -3,84 +3,324 @@
     "metadata": {
         "name": "sports_prediction",
         "version": "0.1.0",
-        "spec": "0.1.0"
+        "spec": "0.1.0",
+        "description": "Solana sports prediction market program"
     },
     "instructions": [
         {
-            "name": "initializeMarket",
+            "name": "claim_winnings",
+            "discriminator": [
+                161,
+                215,
+                24,
+                59,
+                14,
+                236,
+                242,
+                221
+            ],
             "accounts": [
                 {
                     "name": "market",
-                    "isMut": true,
-                    "isSigner": false
+                    "writable": true,
+                    "pda": {
+                        "seeds": [
+                            {
+                                "kind": "const",
+                                "value": [
+                                    109,
+                                    97,
+                                    114,
+                                    107,
+                                    101,
+                                    116
+                                ]
+                            },
+                            {
+                                "kind": "account",
+                                "path": "market.event_id",
+                                "account": "Market"
+                            }
+                        ]
+                    }
                 },
                 {
                     "name": "vault",
-                    "isMut": true,
-                    "isSigner": false
+                    "writable": true,
+                    "pda": {
+                        "seeds": [
+                            {
+                                "kind": "const",
+                                "value": [
+                                    118,
+                                    97,
+                                    117,
+                                    108,
+                                    116
+                                ]
+                            },
+                            {
+                                "kind": "account",
+                                "path": "market.event_id",
+                                "account": "Market"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "dev_wallet",
+                    "writable": true
+                },
+                {
+                    "name": "user_bet",
+                    "writable": true,
+                    "pda": {
+                        "seeds": [
+                            {
+                                "kind": "const",
+                                "value": [
+                                    98,
+                                    101,
+                                    116
+                                ]
+                            },
+                            {
+                                "kind": "account",
+                                "path": "market"
+                            },
+                            {
+                                "kind": "account",
+                                "path": "user"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "user",
+                    "writable": true,
+                    "signer": true
+                },
+                {
+                    "name": "owner",
+                    "relations": [
+                        "user_bet"
+                    ]
+                },
+                {
+                    "name": "system_program",
+                    "address": "11111111111111111111111111111111"
+                }
+            ],
+            "args": []
+        },
+        {
+            "name": "initialize_market",
+            "discriminator": [
+                35,
+                35,
+                189,
+                193,
+                155,
+                48,
+                170,
+                203
+            ],
+            "accounts": [
+                {
+                    "name": "market",
+                    "writable": true,
+                    "pda": {
+                        "seeds": [
+                            {
+                                "kind": "const",
+                                "value": [
+                                    109,
+                                    97,
+                                    114,
+                                    107,
+                                    101,
+                                    116
+                                ]
+                            },
+                            {
+                                "kind": "arg",
+                                "path": "event_id"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "vault",
+                    "writable": true,
+                    "pda": {
+                        "seeds": [
+                            {
+                                "kind": "const",
+                                "value": [
+                                    118,
+                                    97,
+                                    117,
+                                    108,
+                                    116
+                                ]
+                            },
+                            {
+                                "kind": "arg",
+                                "path": "event_id"
+                            }
+                        ]
+                    }
                 },
                 {
                     "name": "authority",
-                    "isMut": true,
-                    "isSigner": true
+                    "writable": true,
+                    "signer": true
                 },
                 {
-                    "name": "systemProgram",
-                    "isMut": false,
-                    "isSigner": false
+                    "name": "system_program",
+                    "address": "11111111111111111111111111111111"
                 }
             ],
             "args": [
                 {
-                    "name": "eventId",
+                    "name": "event_id",
                     "type": "string"
                 },
                 {
-                    "name": "oracleFeed",
+                    "name": "oracle_feed",
                     "type": "pubkey"
                 },
                 {
-                    "name": "devWallet",
+                    "name": "dev_wallet",
                     "type": "pubkey"
                 },
                 {
-                    "name": "endTime",
+                    "name": "end_time",
                     "type": "i64"
                 }
             ]
         },
         {
-            "name": "placeBet",
+            "name": "lock_market",
+            "discriminator": [
+                107,
+                8,
+                184,
+                91,
+                223,
+                13,
+                180,
+                38
+            ],
             "accounts": [
                 {
                     "name": "market",
-                    "isMut": true,
-                    "isSigner": false
+                    "writable": true
+                },
+                {
+                    "name": "authority",
+                    "signer": true
+                }
+            ],
+            "args": []
+        },
+        {
+            "name": "place_bet",
+            "discriminator": [
+                222,
+                62,
+                67,
+                220,
+                63,
+                166,
+                126,
+                33
+            ],
+            "accounts": [
+                {
+                    "name": "market",
+                    "writable": true,
+                    "pda": {
+                        "seeds": [
+                            {
+                                "kind": "const",
+                                "value": [
+                                    109,
+                                    97,
+                                    114,
+                                    107,
+                                    101,
+                                    116
+                                ]
+                            },
+                            {
+                                "kind": "account",
+                                "path": "market.event_id",
+                                "account": "Market"
+                            }
+                        ]
+                    }
                 },
                 {
                     "name": "vault",
-                    "isMut": true,
-                    "isSigner": false
+                    "writable": true,
+                    "pda": {
+                        "seeds": [
+                            {
+                                "kind": "const",
+                                "value": [
+                                    118,
+                                    97,
+                                    117,
+                                    108,
+                                    116
+                                ]
+                            },
+                            {
+                                "kind": "account",
+                                "path": "market.event_id",
+                                "account": "Market"
+                            }
+                        ]
+                    }
                 },
                 {
-                    "name": "userBet",
-                    "isMut": true,
-                    "isSigner": false
+                    "name": "user_bet",
+                    "writable": true,
+                    "pda": {
+                        "seeds": [
+                            {
+                                "kind": "const",
+                                "value": [
+                                    98,
+                                    101,
+                                    116
+                                ]
+                            },
+                            {
+                                "kind": "account",
+                                "path": "market"
+                            },
+                            {
+                                "kind": "account",
+                                "path": "user"
+                            }
+                        ]
+                    }
                 },
                 {
                     "name": "user",
-                    "isMut": true,
-                    "isSigner": true
+                    "writable": true,
+                    "signer": true
                 },
                 {
-                    "name": "systemProgram",
-                    "isMut": false,
-                    "isSigner": false
+                    "name": "system_program",
+                    "address": "11111111111111111111111111111111"
                 }
             ],
             "args": [
                 {
-                    "name": "outcomeId",
+                    "name": "outcome_id",
                     "type": "u8"
                 },
                 {
@@ -90,82 +330,33 @@
             ]
         },
         {
-            "name": "lockMarket",
-            "accounts": [
-                {
-                    "name": "market",
-                    "isMut": true,
-                    "isSigner": false
-                },
-                {
-                    "name": "authority",
-                    "isMut": false,
-                    "isSigner": true
-                }
+            "name": "settle_market",
+            "discriminator": [
+                193,
+                153,
+                95,
+                216,
+                166,
+                6,
+                144,
+                217
             ],
-            "args": []
-        },
-        {
-            "name": "settleMarket",
             "accounts": [
                 {
                     "name": "market",
-                    "isMut": true,
-                    "isSigner": false
+                    "writable": true
                 },
                 {
                     "name": "authority",
-                    "isMut": false,
-                    "isSigner": true
+                    "signer": true
                 }
             ],
             "args": [
                 {
-                    "name": "winningOutcome",
+                    "name": "winning_outcome",
                     "type": "u8"
                 }
             ]
-        },
-        {
-            "name": "claimWinnings",
-            "accounts": [
-                {
-                    "name": "market",
-                    "isMut": true,
-                    "isSigner": false
-                },
-                {
-                    "name": "vault",
-                    "isMut": true,
-                    "isSigner": false
-                },
-                {
-                    "name": "devWallet",
-                    "isMut": true,
-                    "isSigner": false
-                },
-                {
-                    "name": "userBet",
-                    "isMut": true,
-                    "isSigner": false
-                },
-                {
-                    "name": "user",
-                    "isMut": true,
-                    "isSigner": true
-                },
-                {
-                    "name": "owner",
-                    "isMut": false,
-                    "isSigner": false
-                },
-                {
-                    "name": "systemProgram",
-                    "isMut": false,
-                    "isSigner": false
-                }
-            ],
-            "args": []
         }
     ],
     "accounts": [
@@ -194,107 +385,6 @@
                 46,
                 63
             ]
-        }
-    ],
-    "types": [
-        {
-            "name": "Market",
-            "type": {
-                "kind": "struct",
-                "fields": [
-                    {
-                        "name": "eventId",
-                        "type": "string"
-                    },
-                    {
-                        "name": "oracleFeed",
-                        "type": "pubkey"
-                    },
-                    {
-                        "name": "devWallet",
-                        "type": "pubkey"
-                    },
-                    {
-                        "name": "poolA",
-                        "type": "u64"
-                    },
-                    {
-                        "name": "poolB",
-                        "type": "u64"
-                    },
-                    {
-                        "name": "totalPool",
-                        "type": "u64"
-                    },
-                    {
-                        "name": "endTime",
-                        "type": "i64"
-                    },
-                    {
-                        "name": "status",
-                        "type": {
-                            "defined": "MarketStatus"
-                        }
-                    },
-                    {
-                        "name": "authority",
-                        "type": "pubkey"
-                    },
-                    {
-                        "name": "winningOutcome",
-                        "type": "u8"
-                    },
-                    {
-                        "name": "vaultBump",
-                        "type": "u8"
-                    }
-                ]
-            }
-        },
-        {
-            "name": "UserBet",
-            "type": {
-                "kind": "struct",
-                "fields": [
-                    {
-                        "name": "market",
-                        "type": "pubkey"
-                    },
-                    {
-                        "name": "owner",
-                        "type": "pubkey"
-                    },
-                    {
-                        "name": "outcomeId",
-                        "type": "u8"
-                    },
-                    {
-                        "name": "amount",
-                        "type": "u64"
-                    },
-                    {
-                        "name": "claimed",
-                        "type": "bool"
-                    }
-                ]
-            }
-        },
-        {
-            "name": "MarketStatus",
-            "type": {
-                "kind": "enum",
-                "variants": [
-                    {
-                        "name": "Open"
-                    },
-                    {
-                        "name": "Locked"
-                    },
-                    {
-                        "name": "Settled"
-                    }
-                ]
-            }
         }
     ],
     "errors": [
@@ -342,6 +432,109 @@
             "code": 6008,
             "name": "InconsistentState",
             "msg": "Internal state inconsistency"
+        }
+    ],
+    "types": [
+        {
+            "name": "Market",
+            "type": {
+                "kind": "struct",
+                "fields": [
+                    {
+                        "name": "event_id",
+                        "type": "string"
+                    },
+                    {
+                        "name": "oracle_feed",
+                        "type": "pubkey"
+                    },
+                    {
+                        "name": "dev_wallet",
+                        "type": "pubkey"
+                    },
+                    {
+                        "name": "pool_a",
+                        "type": "u64"
+                    },
+                    {
+                        "name": "pool_b",
+                        "type": "u64"
+                    },
+                    {
+                        "name": "total_pool",
+                        "type": "u64"
+                    },
+                    {
+                        "name": "end_time",
+                        "type": "i64"
+                    },
+                    {
+                        "name": "status",
+                        "type": {
+                            "defined": {
+                                "name": "MarketStatus"
+                            }
+                        }
+                    },
+                    {
+                        "name": "authority",
+                        "type": "pubkey"
+                    },
+                    {
+                        "name": "winning_outcome",
+                        "type": "u8"
+                    },
+                    {
+                        "name": "vault_bump",
+                        "type": "u8"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "MarketStatus",
+            "type": {
+                "kind": "enum",
+                "variants": [
+                    {
+                        "name": "Open"
+                    },
+                    {
+                        "name": "Locked"
+                    },
+                    {
+                        "name": "Settled"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "UserBet",
+            "type": {
+                "kind": "struct",
+                "fields": [
+                    {
+                        "name": "market",
+                        "type": "pubkey"
+                    },
+                    {
+                        "name": "owner",
+                        "type": "pubkey"
+                    },
+                    {
+                        "name": "outcome_id",
+                        "type": "u8"
+                    },
+                    {
+                        "name": "amount",
+                        "type": "u64"
+                    },
+                    {
+                        "name": "claimed",
+                        "type": "bool"
+                    }
+                ]
+            }
         }
     ]
 }

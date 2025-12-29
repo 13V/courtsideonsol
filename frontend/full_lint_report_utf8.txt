@@ -1,0 +1,24 @@
+﻿
+> frontend@0.1.0 lint
+> eslint
+
+
+C:\Users\Administrator\.gemini\antigravity\scratch\sports-prediction-site\frontend\app\hooks\useSportsProgram.ts
+  22:48  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  23:52  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  28:27  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  32:39  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\Administrator\.gemini\antigravity\scratch\sports-prediction-site\frontend\app\page.tsx
+   80:9   warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+  138:9   warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+  394:17  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+C:\Users\Administrator\.gemini\antigravity\scratch\sports-prediction-site\frontend\calc_disc.js
+  1:20  error  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+
+C:\Users\Administrator\.gemini\antigravity\scratch\sports-prediction-site\frontend\debug_production.js
+  25:73  warning  'err' is defined but never used  @typescript-eslint/no-unused-vars
+
+Γ£û 9 problems (5 errors, 4 warnings)
+

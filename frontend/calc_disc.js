@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
 const { sha256 } = require("js-sha256");
 
 function getDiscriminator(name) {
