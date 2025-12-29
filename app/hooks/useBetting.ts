@@ -52,21 +52,22 @@ export const useBetting = () => {
                 return;
             }
 
+            const encoder = new TextEncoder();
             // 1. Derive Market PDA
             const [marketPda] = PublicKey.findProgramAddressSync(
-                [Buffer.from("market"), Buffer.from(marketId)],
+                [encoder.encode("market"), encoder.encode(marketId)],
                 program.programId
             );
 
             // 2. Derive Vault PDA
             const [vaultPda] = PublicKey.findProgramAddressSync(
-                [Buffer.from("vault"), Buffer.from(marketId)],
+                [encoder.encode("vault"), encoder.encode(marketId)],
                 program.programId
             );
 
             // 3. Derive UserBet PDA
             const [userBetPda] = PublicKey.findProgramAddressSync(
-                [Buffer.from("bet"), marketPda.toBuffer(), publicKey.toBuffer()],
+                [encoder.encode("bet"), marketPda.toBuffer(), publicKey.toBuffer()],
                 program.programId
             );
 
@@ -99,18 +100,19 @@ export const useBetting = () => {
 
         setIsTxPending(true);
         try {
+            const encoder = new TextEncoder();
             const [marketPda] = PublicKey.findProgramAddressSync(
-                [Buffer.from("market"), Buffer.from(marketId)],
+                [encoder.encode("market"), encoder.encode(marketId)],
                 program.programId
             );
 
             const [vaultPda] = PublicKey.findProgramAddressSync(
-                [Buffer.from("vault"), Buffer.from(marketId)],
+                [encoder.encode("vault"), encoder.encode(marketId)],
                 program.programId
             );
 
             const [userBetPda] = PublicKey.findProgramAddressSync(
-                [Buffer.from("bet"), marketPda.toBuffer(), publicKey.toBuffer()],
+                [encoder.encode("bet"), marketPda.toBuffer(), publicKey.toBuffer()],
                 program.programId
             );
 
@@ -145,13 +147,14 @@ export const useBetting = () => {
 
         setIsTxPending(true);
         try {
+            const encoder = new TextEncoder();
             const [marketPda] = PublicKey.findProgramAddressSync(
-                [Buffer.from("market"), Buffer.from(marketId)],
+                [encoder.encode("market"), encoder.encode(marketId)],
                 program.programId
             );
 
             const [vaultPda] = PublicKey.findProgramAddressSync(
-                [Buffer.from("vault"), Buffer.from(marketId)],
+                [encoder.encode("vault"), encoder.encode(marketId)],
                 program.programId
             );
 

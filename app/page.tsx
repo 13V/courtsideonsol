@@ -399,10 +399,11 @@ export default function Home() {
       // Derive PDAs for all known markets, including potential V2/V3 versions for ghost settlements
       const pdaRequests: { id: string; pda: PublicKey }[] = [];
 
+      const encoder = new TextEncoder();
       markets.forEach(m => {
         // Base version
         const [pda] = PublicKey.findProgramAddressSync(
-          [Buffer.from("market"), Buffer.from(m.id)],
+          [encoder.encode("market"), encoder.encode(m.id)],
           program.programId
         );
         pdaRequests.push({ id: m.id, pda });
@@ -410,7 +411,7 @@ export default function Home() {
         // Potential V2/V3 versions
         [2, 3].forEach(v => {
           const [vpda] = PublicKey.findProgramAddressSync(
-            [Buffer.from("market"), Buffer.from(`${m.id}-v${v}`)],
+            [encoder.encode("market"), encoder.encode(`${m.id}-v${v}`)],
             program.programId
           );
           pdaRequests.push({ id: `${m.id}-v${v}`, pda: vpda });
