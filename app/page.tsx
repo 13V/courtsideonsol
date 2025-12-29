@@ -12,7 +12,8 @@ import {
   Trophy,
   Shield,
   CreditCard,
-  ExternalLink
+  ExternalLink,
+  Check
 } from 'lucide-react';
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import { useWallet } from "@solana/wallet-adapter-react";
@@ -361,6 +362,7 @@ export default function Home() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const { getScoreForMarket } = useLiveScores();
   const [claimTxs, setClaimTxs] = useState<Record<string, string>>({});
+  const [isSuccess, setIsSuccess] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => setMounted(true), 0);
@@ -514,11 +516,15 @@ export default function Home() {
 
       const tx = await placeBet(activeInfo.id, outcomeId, amount);
       if (tx) {
-        setBetAmount("0.001");
-        setBetOutcome(null);
-        setSelectedMarket(null);
-        // Refresh bets after placement
-        setTimeout(fetchBets, 2000);
+        setIsSuccess(true);
+        setTimeout(() => {
+          setIsSuccess(false);
+          setBetAmount("0.001");
+          setBetOutcome(null);
+          setSelectedMarket(null);
+          // Refresh bets after placement
+          fetchBets();
+        }, 2000);
       }
     } catch (error: any) {
       console.error("Home: handleBet error", error);
@@ -1016,12 +1022,34 @@ export default function Home() {
 
                 <button
                   onClick={() => betOutcome !== null && handleBetExecution(selectedMarket.id, betOutcome)}
-                  disabled={isTxPending || betOutcome === null || !betAmount || parseFloat(betAmount) <= 0}
-                  className={`w-full py-4 bg-[#00FF00] text-black font-black text-xl uppercase italic tracking-widest rounded-[24px] hover:scale-[1.01] active:scale-95 transition-all shadow-[0_15px_30px_rgba(0,255,0,0.1)] ${isTxPending || betOutcome === null ? 'opacity-50 grayscale cursor-not-allowed' : ''}`}
+                  disabled={isTxPending || betOutcome === null || !betAmount || parseFloat(betAmount) <= 0 || isSuccess}
+                  className={`w-full py-4 bg-[#00FF00] text-black font-black text-xl uppercase italic tracking-widest rounded-[24px] hover:scale-[1.01] active:scale-95 transition-all shadow-[0_15px_30px_rgba(0,255,0,0.1)] ${isTxPending || betOutcome === null || isSuccess ? 'opacity-50 grayscale cursor-not-allowed' : ''}`}
                 >
-                  {isTxPending ? 'EXECUTING...' : 'Execute Position'}
+                  {isSuccess ? 'POSITIONS PLACED' : isTxPending ? 'EXECUTING...' : 'Execute Position'}
                 </button>
               </div>
+
+              {/* SUCCESS OVERLAY */}
+              <AnimatePresence>
+                {isSuccess && (
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className="absolute inset-0 z-50 flex flex-col items-center justify-center bg-[#050505]/90 backdrop-blur-xl"
+                  >
+                    <motion.div
+                      initial={{ scale: 0, rotate: -20 }}
+                      animate={{ scale: 1, rotate: 0 }}
+                      className="w-24 h-24 bg-[#00FF00] rounded-full flex items-center justify-center mb-6 shadow-[0_0_50px_rgba(0,255,0,0.4)]"
+                    >
+                      <Check className="w-12 h-12 text-black stroke-[4px]" />
+                    </motion.div>
+                    <h3 className="text-3xl font-black italic uppercase tracking-tighter text-white mb-2">Prediction Placed</h3>
+                    <p className="text-[#00FF00] font-black italic tracking-widest text-[10px] uppercase animate-pulse">Arena Status: Synchronizing</p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
           </motion.div>
         )}
