@@ -396,6 +396,8 @@ export default function Home() {
     if (!program || markets.length === 0) return;
     try {
       console.log("Home: Fetching on-chain market data via batch...");
+      console.log("Home: Global Buffer status:", typeof Buffer !== 'undefined' ? "DEFINED" : "UNDEFINED");
+      console.log("Home: window.Buffer status:", typeof window !== 'undefined' && (window as any).Buffer ? "DEFINED" : "UNDEFINED");
 
       // Derive PDAs for all known markets, including potential V2/V3 versions for ghost settlements
       const pdaRequests: { id: string; pda: PublicKey }[] = [];

@@ -10,6 +10,11 @@ import { clusterApiUrl } from "@solana/web3.js";
 
 // Default styles
 import "@solana/wallet-adapter-react-ui/styles.css";
+import { Buffer } from "buffer";
+
+if (typeof window !== "undefined" && !window.Buffer) {
+    (window as any).Buffer = Buffer;
+}
 
 export default function SolanaProvider({ children }: { children: React.ReactNode }) {
     // Use private QuickNode RPC if available via env, fallback to hardcoded QuickNode as default to resolve 403
