@@ -831,7 +831,7 @@ export default function Home() {
 
             <div className="space-y-4">
               <h4 className="text-[10px] font-black italic tracking-widest text-white/40 uppercase">Global Program State</h4>
-              <div className="p-6 bg-black/40 rounded-3xl border border-white/5 space-y-2 max-h-[200px] overflow-y-auto">
+              <div className="p-6 bg-black/40 rounded-3xl border border-white/5 space-y-2 max-h-[800px] overflow-y-auto">
                 {allProgramMarkets.length === 0 ? (
                   <p className="text-xs text-white/20 italic">No markets found on program address.</p>
                 ) : (

@@ -65,6 +65,7 @@ const TEAM_DATA: Record<string, TeamData> = {
     "KRAKEN": { logo: "sea", color: "#001628" },
     "KNIGHTS": { logo: "vgk", color: "#B4975A" },
     "BRUINS": { logo: "bos", color: "#FFB81C" },
+    "CAVALIERS": { logo: "cle", color: "#860038" },
 };
 
 const findTeamDetails = (name: string) => {

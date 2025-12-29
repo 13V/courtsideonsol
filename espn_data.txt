@@ -1,0 +1,7 @@
+Total Events: 6
+- Event: 401810296 | GS vs TOR | Date: 2025-12-28T20:30Z | Status: STATUS_FINAL (Final/OT)
+- Event: 401810297 | PHI vs OKC | Date: 2025-12-28T20:30Z | Status: STATUS_FINAL (Final)
+- Event: 401810298 | MEM vs WSH | Date: 2025-12-28T23:00Z | Status: STATUS_FINAL (Final)
+- Event: 401810299 | BOS vs POR | Date: 2025-12-28T23:00Z | Status: STATUS_FINAL (Final)
+- Event: 401810300 | DET vs LAC | Date: 2025-12-29T02:00Z | Status: STATUS_FINAL (Final)
+- Event: 401810301 | SAC vs LAL | Date: 2025-12-29T02:30Z | Status: STATUS_FINAL (Final)
