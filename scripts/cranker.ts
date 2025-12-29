@@ -110,27 +110,28 @@ async function runCranker() {
                 const event = data.events.find((e: any) => {
                     const comp = e.competitions?.[0];
                     if (!comp) return false;
-                    const home = comp.competitors.find((c: any) => c.homeAway === 'home')?.team?.abbreviation;
-                    const away = comp.competitors.find((c: any) => c.homeAway === 'away')?.team?.abbreviation;
-                    const marketKey = `${away}-${home}`.toUpperCase();
-
-                    // Possible on-chain eventId formats:
-                    // 1. "401810297" (Pure ESPN ID)
-                    // 2. "PHI-OKC" (Simple Abbreviation)
-                    // 3. "nba-phi-okc-2025-12-28" (Detailed Slug)
-                    // 4. "76ers-thunder" (ESPN Slug)
-
-                    const eventIdNorm = eventId.toUpperCase();
-                    const eId = e.id.toUpperCase();
-                    const eSlug = (e.slug || "").toUpperCase();
 
                     // 1. Check ID or Slug overlap
-                    const basicMatch = eventIdNorm.includes(eId) ||
-                        eventIdNorm.includes(marketKey) ||
-                        eSlug.includes(eventIdNorm) ||
-                        eventIdNorm.includes(eSlug);
+                    const eId = e.id.toUpperCase();
+                    const eSlug = (e.slug || "").toUpperCase();
+                    const eventIdNorm = eventId.toUpperCase();
 
-                    if (!basicMatch) return false;
+                    // GET TEAM NAMES FROM ESPN
+                    const homeTeam = comp.competitors.find((c: any) => c.homeAway === 'home')?.team?.abbreviation?.toUpperCase();
+                    const awayTeam = comp.competitors.find((c: any) => c.homeAway === 'away')?.team?.abbreviation?.toUpperCase();
+
+                    if (!homeTeam || !awayTeam) return false;
+
+                    // STRICT MATCH: Both teams must be present in the eventId slug
+                    const teamsMatch = eventIdNorm.includes(homeTeam) && eventIdNorm.includes(awayTeam);
+
+                    // ID Match
+                    const idMatch = eventIdNorm.includes(eId) || eSlug.includes(eventIdNorm) || eventIdNorm.includes(eSlug);
+
+                    if (!teamsMatch && !idMatch) return false;
+
+                    console.log(`  [POTENTIAL MATCH] Market ${eventId} vs Event ${eSlug} (ID: ${eId})`);
+                    console.log(`  Teams: ${awayTeam} @ ${homeTeam} | Matches: ${teamsMatch} | ID: ${idMatch}`);
 
                     // 2. DATE VALIDATION (CRITICAL)
                     const dateMatch = eventId.match(/\d{4}-\d{2}-\d{2}/);
@@ -139,10 +140,10 @@ async function runCranker() {
                         const eventDate = e.date?.split('T')[0]; // ESPN format: "2025-12-28T..."
 
                         if (marketDate !== eventDate) {
-                            console.log(`  [SKIP] Market ${eventId} vs Event ${eSlug}: Date Mismatch (${marketDate} vs ${eventDate})`);
+                            console.log(`  [SKIP] Date Mismatch (${marketDate} vs ${eventDate})`);
                             return false;
                         }
-                        console.log(`  [DATE MATCH] Market ${eventId} matches event date ${eventDate}`);
+                        console.log(`  [DATE MATCH] Confirmed ${marketDate}`);
                     }
 
                     return true;
