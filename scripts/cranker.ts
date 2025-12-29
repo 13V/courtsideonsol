@@ -125,9 +125,12 @@ async function runCranker() {
                     // STRICT MATCH: Both teams must be present in the eventId slug
                     const teamsMatch = eventIdNorm.includes(homeTeam) && eventIdNorm.includes(awayTeam);
 
-                    // ID Match
-                    const idMatch = eventIdNorm.includes(eId) || eSlug.includes(eventIdNorm) || eventIdNorm.includes(eSlug);
+                    // ID Match (only if non-empty)
+                    const idMatch = (eId && eventIdNorm.includes(eId)) ||
+                        (eSlug && eSlug.includes(eventIdNorm)) ||
+                        (eSlug && eventIdNorm.includes(eSlug));
 
+                    // MUST match at least one criteria AND it must be a non-empty match
                     if (!teamsMatch && !idMatch) return false;
 
                     console.log(`  [POTENTIAL MATCH] Market ${eventId} vs Event ${eSlug} (ID: ${eId})`);
