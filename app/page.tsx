@@ -354,7 +354,6 @@ export default function Home() {
   const [selectedMarket, setSelectedMarket] = useState<Market | null>(null);
   const [mounted, setMounted] = useState(false);
   const [onChainMarkets, setOnChainMarkets] = useState<Map<string, any>>(new Map());
-  const [allProgramMarkets, setAllProgramMarkets] = useState<any[]>([]);
   const { placeBet, claimWinnings, initializeMarket, isTxPending } = useBetting();
   const { bets, isLoading: isBetsLoading, fetchBets } = useUserBets();
   const { publicKey, connected } = useWallet();
@@ -398,8 +397,6 @@ export default function Home() {
     if (!program || markets.length === 0) return;
     try {
       console.log("Home: Fetching on-chain market data via batch...");
-      console.log("Home: Global Buffer status:", typeof Buffer !== 'undefined' ? "DEFINED" : "UNDEFINED");
-      console.log("Home: window.Buffer status:", typeof window !== 'undefined' && (window as any).Buffer ? "DEFINED" : "UNDEFINED");
 
       // Derive PDAs for all known markets, including potential V2/V3 versions for ghost settlements
       const pdaRequests: { id: string; pda: PublicKey }[] = [];
@@ -437,15 +434,7 @@ export default function Home() {
 
       setOnChainMarkets(marketMap);
 
-      // DEBUG: Fetch every single market account from the program to see what's out there
-      const allAccounts = await (program.account as any).market.all();
-      setAllProgramMarkets(allAccounts.map((a: any) => ({
-        pubkey: a.publicKey.toBase58(),
-        eventId: a.account.eventId,
-        status: a.account.status
-      })));
-
-      console.log(`Home: Global Arena check found ${allAccounts.length} total markets on program.`);
+      setOnChainMarkets(marketMap);
     } catch (err) {
       console.error("Home: Failed to fetch on-chain markets", err);
     }
@@ -839,58 +828,6 @@ export default function Home() {
               )}
           </div>
         )}
-
-        {/* --- DEBUG DIAGNOSTICS (HIDDEN IN PRODUCTION OR REVEALED FOR DEV) --- */}
-        <div className="mt-40 p-10 border-t border-white/5 bg-white/[0.01] rounded-[60px]">
-          <div className="flex items-center justify-between mb-10">
-            <div>
-              <h3 className="text-2xl font-black italic tracking-tighter uppercase mb-2">Arena Debug Diagnostics</h3>
-              <p className="text-white/20 text-xs">Direct Protocol State Visibility (Mainnet-Beta)</p>
-            </div>
-            <div className={`px-4 py-2 rounded-full text-[10px] font-bold ${program ? 'bg-[#00FF00]/10 text-[#00FF00]' : 'bg-red-500/10 text-red-500'}`}>
-              {program ? 'RPC LINKED' : 'RPC DISCONNECTED'}
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-            <div className="space-y-4">
-              <h4 className="text-[10px] font-black italic tracking-widest text-white/40 uppercase">Display Filters</h4>
-              <div className="p-6 bg-black/40 rounded-3xl border border-white/5 space-y-2">
-                <div className="flex justify-between text-xs">
-                  <span className="text-white/40">Total Polymarket API Markets:</span>
-                  <span className="font-mono text-white">{markets.length}</span>
-                </div>
-                <div className="flex justify-between text-xs">
-                  <span className="text-white/40">Markets Linked to Solana:</span>
-                  <span className="font-mono text-[#00FF00]">{onChainMarkets.size}</span>
-                </div>
-                <div className="flex justify-between text-xs">
-                  <span className="text-white/40">Program ID:</span>
-                  <span className="font-mono text-white/60 text-[10px] truncate ml-4">5oCaNW77...WyqtT</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="space-y-4">
-              <h4 className="text-[10px] font-black italic tracking-widest text-white/40 uppercase">Global Program State</h4>
-              <div className="p-6 bg-black/40 rounded-3xl border border-white/5 space-y-2 max-h-[800px] overflow-y-auto">
-                {allProgramMarkets.length === 0 ? (
-                  <p className="text-xs text-white/20 italic">No markets found on program address.</p>
-                ) : (
-                  allProgramMarkets.map((m, i) => (
-                    <div key={i} className="flex flex-col gap-1 py-2 border-b border-white/5 last:border-0">
-                      <div className="flex justify-between text-[10px]">
-                        <span className="text-white/60 font-mono">{m.eventId}</span>
-                        <span className="text-[#00FF00] uppercase">{Object.keys(m.status)[0]}</span>
-                      </div>
-                      <span className="text-[8px] text-white/20 font-mono truncate">{m.pubkey}</span>
-                    </div>
-                  ))
-                )}
-              </div>
-            </div>
-          </div>
-        </div>
 
       </div>
 
@@ -1345,31 +1282,6 @@ export default function Home() {
         )
         }
       </AnimatePresence >
-
-      {/* DEBUG OVERLAY */}
-      < div className="fixed bottom-6 right-6 z-[1000] p-4 bg-black/80 backdrop-blur-xl border border-white/10 rounded-2xl text-[10px] font-mono flex flex-col gap-2 shadow-2xl pointer-events-none opacity-50 hover:opacity-100 transition-opacity" >
-        <div className="flex items-center gap-2">
-          <div className={`w-2 h-2 rounded-full ${mounted ? 'bg-green-500' : 'bg-red-500'}`} />
-          <span>MOUNTED: {mounted ? 'YES' : 'NO'}</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <div className={`w-2 h-2 rounded-full ${isTxPending ? 'bg-yellow-500 animate-pulse' : 'bg-green-500 opacity-20'}`} />
-          <span>TX PENDING: {isTxPending ? 'YES' : 'NO'}</span>
-        </div>
-        <div className="border-t border-white/5 my-1" />
-        <div className="flex items-center gap-2">
-          <div className={`w-2 h-2 rounded-full ${connected ? 'bg-green-500' : 'bg-red-500'}`} />
-          <span>WALLET: {connected ? 'CONNECTED' : 'DISCONNECTED'}</span>
-        </div>
-        <div className="flex items-center gap-2 pl-4">
-          <div className={`w-2 h-2 rounded-full ${publicKey ? 'bg-green-500' : 'bg-red-500'}`} />
-          <span>PK: {publicKey ? publicKey.toBase58().slice(0, 4) + '...' + publicKey.toBase58().slice(-4) : 'NONE'}</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <div className={`w-2 h-2 rounded-full ${program ? 'bg-green-500' : 'bg-red-500'}`} />
-          <span>PROGRAM: {program ? 'READY' : 'NOT INITIALIZED'}</span>
-        </div>
-      </div >
 
     </main >
   );
