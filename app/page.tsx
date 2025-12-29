@@ -520,8 +520,17 @@ export default function Home() {
         // Refresh bets after placement
         setTimeout(fetchBets, 2000);
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error("Home: handleBet error", error);
+
+      let logMsg = "";
+      if (error.extractedLogs) {
+        logMsg = "\n\nProgram Logs:\n" + error.extractedLogs.join("\n");
+      } else if (error.logs) {
+        logMsg = "\n\nProgram Logs:\n" + error.logs.join("\n");
+      }
+
+      alert(`Bet Submission Failed.${logMsg || "\nCheck wallet and try again."}`);
     }
   };
 

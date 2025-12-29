@@ -87,8 +87,18 @@ export const useBetting = () => {
 
             console.log("Bet placed! TX:", tx);
             return tx;
-        } catch (error) {
-            console.error("Error placing bet:", error);
+        } catch (error: any) {
+            console.error("useBetting: Error placing bet", error);
+
+            // Extract logs if available (SendTransactionError)
+            if (error.logs) {
+                (error as any).extractedLogs = error.logs;
+            } else if (error.getLogs) {
+                try {
+                    (error as any).extractedLogs = await error.getLogs();
+                } catch (e) { /* ignore */ }
+            }
+
             throw error;
         } finally {
             setIsTxPending(false);
