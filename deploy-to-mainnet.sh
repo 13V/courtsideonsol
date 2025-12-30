@@ -4,7 +4,7 @@
 
 set -e  # Exit on error
 
-echo "🚀 PolyArena - Automated Solana Deployment"
+echo "🚀 PolyBet - Automated Solana Deployment"
 echo "=========================================="
 echo ""
 

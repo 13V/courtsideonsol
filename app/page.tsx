@@ -387,7 +387,7 @@ export default function Home() {
 
   // Persistent Claim Transactions
   useEffect(() => {
-    const saved = localStorage.getItem('polyarena_claims');
+    const saved = localStorage.getItem('polybet_claims');
     if (saved) {
       try {
         setClaimTxs(JSON.parse(saved));
@@ -399,7 +399,7 @@ export default function Home() {
 
   useEffect(() => {
     if (Object.keys(claimTxs).length > 0) {
-      localStorage.setItem('polyarena_claims', JSON.stringify(claimTxs));
+      localStorage.setItem('polybet_claims', JSON.stringify(claimTxs));
     }
   }, [claimTxs]);
 
@@ -606,7 +606,7 @@ export default function Home() {
               <div className="w-10 h-10 bg-[#00FF00] rounded-xl flex items-center justify-center transform group-hover:rotate-12 transition-all">
                 <Zap className="w-6 h-6 text-black fill-current" />
               </div>
-              <span className="font-black text-2xl tracking-tighter italic">POLYARENA</span>
+              <span className="font-black text-2xl tracking-tighter italic">POLYBET</span>
             </div>
 
             {/* TOKEN CA PILL */}
