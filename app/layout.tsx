@@ -16,8 +16,8 @@ const barlow = Barlow_Condensed({
 });
 
 export const metadata: Metadata = {
-  title: "Sports Arena | Decentralized Prediction Hub",
-  description: "Experience the next level of sports betting on Solana. Fast, transparent, and decentralized.",
+  title: "PolyArena | Decentralized Prediction Hub",
+  description: "Experience the next level of prediction markets on Solana with PolyArena. Fast, transparent, and decentralized.",
 };
 
 export default function RootLayout({
