@@ -653,35 +653,82 @@ export default function Home() {
 
       <div className="pt-32 pb-20 max-w-[1600px] mx-auto px-10">
 
-        {/* HERO SECTION */}
-        <section className="mb-24 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-          <div className="space-y-10">
-            <div className="inline-flex items-center gap-3 px-4 py-2 bg-[#FF6B00]/10 border border-[#FF6B00]/20 rounded-full">
-              <span className="w-2 h-2 rounded-full bg-[#FF6B00] animate-pulse" />
-              <span className="text-[10px] font-black italic text-[#FF6B00] tracking-[0.3em] uppercase">MISSION_MANIFEST_V1.0</span>
-            </div>
-            <h1 className="text-8xl lg:text-[11rem] font-black italic tracking-tighter uppercase leading-[0.75] drop-shadow-2xl">
-              <span className="text-white">POLY</span><br />
-              <span className="text-[#FF6B00]">PREDICT</span>
-            </h1>
-            <p className="text-2xl text-white/40 max-w-xl leading-relaxed font-medium italic">
-              High-fidelity oracle protocol for precision forecasting. Transforming market volatility into verifiable intelligence on Solana.
-            </p>
+        {/* HERO SECTION - REFINED ARCHITECTURE */}
+        <section className="mb-40 relative">
+          {/* Background Ambient FX */}
+          <div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_center,rgba(255,107,0,0.05)_0%,transparent_70%)]" />
+            <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#FF6B00]/20 to-transparent" />
           </div>
 
-          <div className="grid gap-6">
-            {[
-              { step: "01", title: "Synchronize", desc: "Connect your Solana wallet to join the oracle network." },
-              { step: "02", title: "Analyze", desc: "Browse high-fidelity forecasting tiers and market volatility." },
-              { step: "03", title: "Forecast", desc: "Execute positions that settle to your wallet on event finality." }
-            ].map((s, i) => (
-              <div key={i} className="flex items-start gap-6 p-8 border border-white/5 rounded-[40px] bg-white/[0.02] hover:bg-white/[0.05] transition-all group border-l-4 border-l-transparent hover:border-l-[#FF6B00]">
-                <span className="text-5xl font-black italic text-white/[0.03] group-hover:text-[#FF6B00]/10 transition-colors">{s.step}</span>
-                <div className="pt-1">
-                  <h3 className="font-black italic text-2xl uppercase text-white mb-2 group-hover:translate-x-1 transition-transform">{s.title}</h3>
-                  <p className="text-white/30 font-medium leading-relaxed max-w-sm">{s.desc}</p>
-                </div>
+          <div className="flex flex-col items-center text-center space-y-12">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="inline-flex items-center gap-3 px-6 py-2.5 bg-[#FF6B00]/5 border border-[#FF6B00]/10 rounded-full backdrop-blur-xl"
+            >
+              <span className="w-2 h-2 rounded-full bg-[#FF6B00] animate-pulse" />
+              <span className="text-[11px] font-black italic text-[#FF6B00] tracking-[0.4em] uppercase">MISSION_MANIFEST_V1.0</span>
+            </motion.div>
+
+            <motion.h1
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.1 }}
+              className="text-[9rem] lg:text-[14rem] font-black italic tracking-tighter uppercase leading-[0.7] drop-shadow-[0_20px_50px_rgba(255,107,0,0.15)]"
+            >
+              <span className="text-white block">POLY</span>
+              <span className="text-[#FF6B00] text-glow inline-block">PREDICT</span>
+            </motion.h1>
+
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.3 }}
+              className="text-2xl lg:text-3xl text-white/40 max-w-3xl leading-relaxed font-medium italic"
+            >
+              High-fidelity oracle protocol for precision forecasting. <br className="hidden lg:block" />
+              Transforming market volatility into verifiable intelligence on Solana.
+            </motion.p>
+
+            {/* QUICK STATS / HUM */}
+            <div className="flex items-center gap-12 pt-8">
+              <div className="flex flex-col items-center">
+                <span className="text-[10px] font-black italic text-[#FF6B00]/60 uppercase tracking-widest mb-2">ACTIVE NODES</span>
+                <span className="text-2xl font-black italic text-white leading-none">4,096</span>
               </div>
+              <div className="w-px h-10 bg-white/5" />
+              <div className="flex flex-col items-center">
+                <span className="text-[10px] font-black italic text-[#FF6B00]/60 uppercase tracking-widest mb-2">LATENCY</span>
+                <span className="text-2xl font-black italic text-white leading-none">12.4ms</span>
+              </div>
+              <div className="w-px h-10 bg-white/5" />
+              <div className="flex flex-col items-center">
+                <span className="text-[10px] font-black italic text-[#FF6B00]/60 uppercase tracking-widest mb-2">INTEGRITY</span>
+                <span className="text-2xl font-black italic text-[#38BDF8] leading-none">99.9%</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-32 max-w-6xl mx-auto">
+            {[
+              { step: "01", title: "Synchronize", desc: "Connect your Solana wallet to the oracle network." },
+              { step: "02", title: "Analyze", desc: "Browse high-fidelity tiers and market volatility." },
+              { step: "03", title: "Forecast", desc: "Execute positions that settle on event finality." }
+            ].map((s, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 + (i * 0.1) }}
+                className="group relative p-10 border border-white/5 rounded-[40px] bg-white/[0.02] hover:bg-white/[0.05] transition-all hover:-translate-y-2"
+              >
+                <span className="absolute top-8 right-10 text-6xl font-black italic text-white/[0.02] group-hover:text-[#FF6B00]/10 transition-colors">{s.step}</span>
+                <div className="relative z-10">
+                  <h3 className="font-black italic text-2xl uppercase text-white mb-3 group-hover:text-[#FF6B00] transition-colors">{s.title}</h3>
+                  <p className="text-white/30 font-medium leading-relaxed text-sm">{s.desc}</p>
+                </div>
+              </motion.div>
             ))}
           </div>
         </section>
