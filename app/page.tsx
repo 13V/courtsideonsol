@@ -658,23 +658,22 @@ export default function Home() {
           <div className="space-y-10">
             <div className="inline-flex items-center gap-3 px-4 py-2 bg-[#FF6B00]/10 border border-[#FF6B00]/20 rounded-full">
               <span className="w-2 h-2 rounded-full bg-[#FF6B00] animate-pulse" />
-              <span className="text-[10px] font-black italic text-[#FF6B00] tracking-[0.3em] uppercase">Status: Protocol Operational</span>
+              <span className="text-[10px] font-black italic text-[#FF6B00] tracking-[0.3em] uppercase">MISSION_MANIFEST_V1.0</span>
             </div>
-            <h1 className="text-7xl lg:text-9xl font-black italic tracking-tighter uppercase leading-[0.8] drop-shadow-2xl">
-              <span className="text-white/20">THE NEXT</span> <br />
-              <span className="text-white">LEVEL OF</span> <br />
-              <span className="text-[#FF6B00]">ACTION.</span>
+            <h1 className="text-8xl lg:text-[11rem] font-black italic tracking-tighter uppercase leading-[0.75] drop-shadow-2xl">
+              <span className="text-white">POLY</span><br />
+              <span className="text-[#FF6B00]">PREDICT</span>
             </h1>
-            <p className="text-xl text-white/40 max-w-xl leading-relaxed font-medium">
-              Trade on the pulse of live sports. High-fidelity markets, instant settle, and decentralized liquidity on the frontier of Solana.
+            <p className="text-2xl text-white/40 max-w-xl leading-relaxed font-medium italic">
+              High-fidelity oracle protocol for precision forecasting. Transforming market volatility into verifiable intelligence on Solana.
             </p>
           </div>
 
           <div className="grid gap-6">
             {[
-              { step: "01", title: "Verify Access", desc: "Connect your Solana wallet to enter the arena." },
-              { step: "02", title: "Select Tier", desc: "Browse high-volume broadcast tiers and market lines." },
-              { step: "03", title: "Trade Live", desc: "Positions settle to your wallet the moment the clock stops." }
+              { step: "01", title: "Synchronize", desc: "Connect your Solana wallet to join the oracle network." },
+              { step: "02", title: "Analyze", desc: "Browse high-fidelity forecasting tiers and market volatility." },
+              { step: "03", title: "Forecast", desc: "Execute positions that settle to your wallet on event finality." }
             ].map((s, i) => (
               <div key={i} className="flex items-start gap-6 p-8 border border-white/5 rounded-[40px] bg-white/[0.02] hover:bg-white/[0.05] transition-all group border-l-4 border-l-transparent hover:border-l-[#FF6B00]">
                 <span className="text-5xl font-black italic text-white/[0.03] group-hover:text-[#FF6B00]/10 transition-colors">{s.step}</span>
