@@ -204,7 +204,7 @@ const KayoMarketCard = ({
       {/* CINEMATIC BROADCAST AREA (16:9) */}
       <div
         onClick={() => onClick(market)}
-        className="relative aspect-video rounded-[36px] overflow-hidden bg-[#050505] border border-white/5 group-hover:border-[#00FF00]/40 transition-all duration-700 shadow-2xl"
+        className="relative aspect-video rounded-[36px] overflow-hidden bg-[#050505] border border-white/5 group-hover:border-[#FF6B00]/40 transition-all duration-700 shadow-2xl"
       >
         <img
           src={market.image}
@@ -216,7 +216,7 @@ const KayoMarketCard = ({
         {/* LIVE INDICATOR */}
         {isLive && (
           <div className="absolute top-0 left-0 z-20">
-            <div className="bg-[#00FF00] text-black px-5 py-2.5 rounded-br-[20px] flex items-center gap-2 transform -skew-x-12 -ml-2 shadow-[0_5px_15px_rgba(0,255,0,0.3)]">
+            <div className="bg-[#FF6B00] text-black px-5 py-2.5 rounded-br-[20px] flex items-center gap-2 transform -skew-x-12 -ml-2 shadow-[0_5px_15px_rgba(255,107,0,0.3)]">
               <span className="text-[10px] font-black italic tracking-[0.2em] uppercase skew-x-12 ml-2 flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-black animate-pulse" />
                 LIVE
@@ -238,7 +238,7 @@ const KayoMarketCard = ({
               <span className="text-[9px] font-black italic tracking-widest text-white uppercase">LIVE</span>
             </div>
             <div className="px-3 py-1.5 bg-black/80 backdrop-blur-md rounded-xl border border-white/10 flex items-center gap-3">
-              <span className="text-xs font-black italic text-[#00FF00]">{liveScore.awayScore}</span>
+              <span className="text-xs font-black italic text-[#FF6B00]">{liveScore.awayScore}</span>
               <div className="w-px h-3 bg-white/20" />
               <span className="text-xs font-black italic text-white">{liveScore.homeScore}</span>
               <div className="w-px h-3 bg-white/20" />
@@ -255,9 +255,9 @@ const KayoMarketCard = ({
               {market.homeShort}
             </h3>
             <div className="flex items-center gap-4 my-2">
-              <div className="h-[1px] w-6 bg-gradient-to-r from-transparent to-[#00FF00]/40" />
-              <span className="text-base font-black italic text-[#00FF00] drop-shadow-[0_0_10px_rgba(0,255,0,0.5)]">VS</span>
-              <div className="h-[1px] w-6 bg-gradient-to-l from-transparent to-[#00FF00]/40" />
+              <div className="h-[1px] w-6 bg-gradient-to-r from-transparent to-[#FF6B00]/40" />
+              <span className="text-base font-black italic text-[#FF6B00] drop-shadow-[0_0_10px_rgba(255,107,0,0.5)]">VS</span>
+              <div className="h-[1px] w-6 bg-gradient-to-l from-transparent to-[#FF6B00]/40" />
             </div>
             <h3 className="text-[22px] lg:text-[27px] font-black italic tracking-tighter text-white uppercase leading-none drop-shadow-[0_15px_15px_rgba(0,0,0,0.8)] text-center px-2">
               {market.awayShort}
@@ -266,7 +266,7 @@ const KayoMarketCard = ({
         </div>
 
         {/* PLAY BUTTON */}
-        <div className="absolute bottom-6 right-6 w-10 h-10 rounded-full bg-black/60 backdrop-blur-2xl flex items-center justify-center border border-white/10 text-white group-hover:bg-[#00FF00] group-hover:text-black transition-all duration-500 shadow-2xl">
+        <div className="absolute bottom-6 right-6 w-10 h-10 rounded-full bg-black/60 backdrop-blur-2xl flex items-center justify-center border border-white/10 text-white group-hover:bg-[#FF6B00] group-hover:text-black transition-all duration-500 shadow-2xl">
           <Play className="w-4 h-4 fill-current ml-0.5" />
         </div>
       </div>
@@ -274,15 +274,15 @@ const KayoMarketCard = ({
       {/* SIMPLIFIED ACTION HUD */}
       <div className="space-y-4 px-1">
         <div className="flex items-center justify-between text-[9px] font-black italic tracking-[0.2em] text-white/10 uppercase">
-          <span className="flex items-center gap-2 group-hover:text-[#00FF00] transition-colors">
-            <Zap className="w-3 h-3 text-[#00FF00]" />
+          <span className="flex items-center gap-2 group-hover:text-[#FF6B00] transition-colors">
+            <Zap className="w-3 h-3 text-[#FF6B00]" />
             PROTOCOL DATA
           </span>
           <div className="flex items-center gap-4">
             {!isLive && timeLeft && (
               <div className="flex items-center gap-2 px-3 py-1 bg-white/5 rounded-lg border border-white/5">
-                <Activity className="w-2.5 h-2.5 text-[#00FF00] animate-pulse" />
-                <span className="font-mono text-[#00FF00] text-[8px] tracking-widest">{timeLeft}</span>
+                <Activity className="w-2.5 h-2.5 text-[#FF6B00] animate-pulse" />
+                <span className="font-mono text-[#FF6B00] text-[8px] tracking-widest">{timeLeft}</span>
               </div>
             )}
             <span className="font-mono text-white/5">${(market.volume).toLocaleString()} VOL</span>
@@ -293,10 +293,10 @@ const KayoMarketCard = ({
           {/* HOME SIDE */}
           <div
             onClick={(e) => handleBet(0, e)}
-            className={`relative p-3 bg-[#080808] rounded-[24px] border border-white/5 transition-all flex items-center justify-between overflow-hidden group/btn cursor-pointer ${isTxPending ? 'opacity-50 pointer-events-none' : 'hover:border-[#00FF00]/40'}`}
-            style={{ borderLeftWidth: '4px', borderLeftColor: market.homeColor || '#00FF00' }}
+            className={`relative p-3 bg-[#080808] rounded-[24px] border border-white/5 transition-all flex items-center justify-between overflow-hidden group/btn cursor-pointer ${isTxPending ? 'opacity-50 pointer-events-none' : 'hover:border-[#FF6B00]/40'}`}
+            style={{ borderLeftWidth: '4px', borderLeftColor: market.homeColor || '#FF6B00' }}
           >
-            <TeamBadge name={market.homeShort} color={market.homeColor || '#00FF00'} logo={market.homeLogo} size="sm" />
+            <TeamBadge name={market.homeShort} color={market.homeColor || '#FF6B00'} logo={market.homeLogo} size="sm" />
             <div
               onClick={(e) => {
                 e.stopPropagation();
@@ -305,7 +305,7 @@ const KayoMarketCard = ({
               className="flex flex-col items-end gap-1.5 z-10 px-1 hover:scale-110 transition-transform active:scale-95"
             >
               <div className="text-2xl font-black italic leading-none tracking-tighter">{probA}%</div>
-              <div className="text-[10px] font-bold text-[#00FF00]/60 group-hover/btn:text-[#00FF00] uppercase tracking-widest transition-colors">
+              <div className="text-[10px] font-bold text-[#FF6B00]/60 group-hover/btn:text-[#FF6B00] uppercase tracking-widest transition-colors">
                 {getReturn(probA)}x Return
               </div>
             </div>
@@ -321,7 +321,7 @@ const KayoMarketCard = ({
           <div
             onClick={(e) => handleBet(1, e)}
             className={`relative p-3 bg-[#080808] rounded-[24px] border border-white/5 transition-all flex items-center justify-between overflow-hidden group/btn cursor-pointer ${isTxPending ? 'opacity-50 pointer-events-none' : 'hover:border-pink-500/40'}`}
-            style={{ borderRightWidth: '4px', borderRightColor: market.awayColor || '#00FF00' }}
+            style={{ borderRightWidth: '4px', borderRightColor: market.awayColor || '#FF6B00' }}
           >
             <div
               onClick={(e) => {
@@ -335,7 +335,7 @@ const KayoMarketCard = ({
                 {getReturn(probB)}x Return
               </div>
             </div>
-            <TeamBadge name={market.awayShort} color={market.awayColor || '#00FF00'} logo={market.awayLogo} size="sm" />
+            <TeamBadge name={market.awayShort} color={market.awayColor || '#FF6B00'} logo={market.awayLogo} size="sm" />
 
             {/* Brand Glow */}
             <div
@@ -596,14 +596,14 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen bg-[#050505] text-white font-sans selection:bg-[#00FF00] selection:text-black overflow-x-hidden">
+    <main className="min-h-screen bg-[#050505] text-white font-sans selection:bg-[#FF6B00] selection:text-black overflow-x-hidden">
 
       {/* NAV */}
       <nav className="fixed top-0 w-full z-50 bg-[#050505]/80 backdrop-blur-2xl border-b border-white/5">
         <div className="max-w-[1600px] mx-auto px-10 h-24 flex items-center justify-between">
           <div className="flex items-center gap-6">
             <div className="flex items-center gap-4 group cursor-pointer">
-              <div className="w-10 h-10 bg-[#00FF00] rounded-xl flex items-center justify-center transform group-hover:rotate-12 transition-all">
+              <div className="w-10 h-10 bg-[#FF6B00] rounded-xl flex items-center justify-center transform group-hover:rotate-12 transition-all">
                 <Zap className="w-6 h-6 text-black fill-current" />
               </div>
               <span className="font-black text-2xl tracking-tighter italic">POLYPREDICT</span>
@@ -615,12 +615,12 @@ export default function Home() {
               className="hidden lg:flex items-center gap-3 px-4 py-2 bg-white/5 border border-white/10 rounded-2xl hover:bg-white/10 transition-all cursor-pointer group/ca"
             >
               <div className="flex flex-col">
-                <span className="text-[7px] font-black italic tracking-[0.2em] text-[#00FF00] uppercase mb-0.5">CONTRACT ADDRESS</span>
+                <span className="text-[7px] font-black italic tracking-[0.2em] text-[#FF6B00] uppercase mb-0.5">CONTRACT ADDRESS</span>
                 <span className="text-[10px] font-mono text-white/60 group-hover/ca:text-white transition-colors uppercase">
                   {TOKEN_CA.slice(0, 6)}...{TOKEN_CA.slice(-4)}
                 </span>
               </div>
-              <div className="w-8 h-8 rounded-xl bg-white/5 flex items-center justify-center group-hover/ca:bg-[#00FF00] transition-all">
+              <div className="w-8 h-8 rounded-xl bg-white/5 flex items-center justify-center group-hover/ca:bg-[#FF6B00] transition-all">
                 {caCopied ? (
                   <Check className="w-3 h-3 text-black" />
                 ) : (
@@ -632,20 +632,20 @@ export default function Home() {
 
           <div className="flex items-center gap-8">
             <div className="hidden md:flex items-center gap-6 text-[10px] font-black italic tracking-widest uppercase text-white/40">
-              <a href="#" className="hover:text-[#00FF00] transition-colors">Markets</a>
-              <a href="#" className="hover:text-[#00FF00] transition-colors">Live Feed</a>
+              <a href="#" className="hover:text-[#FF6B00] transition-colors">Markets</a>
+              <a href="#" className="hover:text-[#FF6B00] transition-colors">Live Feed</a>
               <button
                 onClick={() => setIsSidebarOpen(true)}
-                className="hover:text-[#00FF00] transition-colors flex items-center gap-2"
+                className="hover:text-[#FF6B00] transition-colors flex items-center gap-2"
               >
                 MY PREDICTIONS
                 {bets.some((b: any) => b.marketData?.status?.settled && b.outcomeId === b.marketData.winningOutcome && !b.claimed) && (
-                  <span className="w-1.5 h-1.5 bg-[#00FF00] rounded-full animate-bounce" />
+                  <span className="w-1.5 h-1.5 bg-[#FF6B00] rounded-full animate-bounce" />
                 )}
               </button>
             </div>
             {mounted && (
-              <WalletMultiButton className="!bg-[#00FF00] !text-black !rounded-2xl !font-black !text-xs !px-8 hover:!scale-105 transition-transform !uppercase !tracking-widest !shadow-[0_0_20px_rgba(0,255,0,0.2)]" />
+              <WalletMultiButton className="!bg-[#FF6B00] !text-black !rounded-2xl !font-black !text-xs !px-8 hover:!scale-105 transition-transform !uppercase !tracking-widest !shadow-[0_0_20px_rgba(255,107,0,0.2)]" />
             )}
           </div>
         </div>
@@ -656,14 +656,14 @@ export default function Home() {
         {/* HERO SECTION */}
         <section className="mb-24 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
           <div className="space-y-10">
-            <div className="inline-flex items-center gap-3 px-4 py-2 bg-[#00FF00]/10 border border-[#00FF00]/20 rounded-full">
-              <span className="w-2 h-2 rounded-full bg-[#00FF00] animate-pulse" />
-              <span className="text-[10px] font-black italic text-[#00FF00] tracking-[0.3em] uppercase">Status: Protocol Operational</span>
+            <div className="inline-flex items-center gap-3 px-4 py-2 bg-[#FF6B00]/10 border border-[#FF6B00]/20 rounded-full">
+              <span className="w-2 h-2 rounded-full bg-[#FF6B00] animate-pulse" />
+              <span className="text-[10px] font-black italic text-[#FF6B00] tracking-[0.3em] uppercase">Status: Protocol Operational</span>
             </div>
             <h1 className="text-7xl lg:text-9xl font-black italic tracking-tighter uppercase leading-[0.8] drop-shadow-2xl">
               <span className="text-white/20">THE NEXT</span> <br />
               <span className="text-white">LEVEL OF</span> <br />
-              <span className="text-[#00FF00]">ACTION.</span>
+              <span className="text-[#FF6B00]">ACTION.</span>
             </h1>
             <p className="text-xl text-white/40 max-w-xl leading-relaxed font-medium">
               Trade on the pulse of live sports. High-fidelity markets, instant settle, and decentralized liquidity on the frontier of Solana.
@@ -676,8 +676,8 @@ export default function Home() {
               { step: "02", title: "Select Tier", desc: "Browse high-volume broadcast tiers and market lines." },
               { step: "03", title: "Trade Live", desc: "Positions settle to your wallet the moment the clock stops." }
             ].map((s, i) => (
-              <div key={i} className="flex items-start gap-6 p-8 border border-white/5 rounded-[40px] bg-white/[0.02] hover:bg-white/[0.05] transition-all group border-l-4 border-l-transparent hover:border-l-[#00FF00]">
-                <span className="text-5xl font-black italic text-white/[0.03] group-hover:text-[#00FF00]/10 transition-colors">{s.step}</span>
+              <div key={i} className="flex items-start gap-6 p-8 border border-white/5 rounded-[40px] bg-white/[0.02] hover:bg-white/[0.05] transition-all group border-l-4 border-l-transparent hover:border-l-[#FF6B00]">
+                <span className="text-5xl font-black italic text-white/[0.03] group-hover:text-[#FF6B00]/10 transition-colors">{s.step}</span>
                 <div className="pt-1">
                   <h3 className="font-black italic text-2xl uppercase text-white mb-2 group-hover:translate-x-1 transition-transform">{s.title}</h3>
                   <p className="text-white/30 font-medium leading-relaxed max-w-sm">{s.desc}</p>
@@ -690,7 +690,7 @@ export default function Home() {
         {/* BOARDCAST HEADER */}
         <div className="flex items-end justify-between mb-16 border-b border-white/5 pb-8">
           <h2 className="text-6xl md:text-8xl font-black italic tracking-tighter text-white uppercase leading-[0.8]">
-            BROADCASTING <br /> <span className="text-[#00FF00]">NOW</span>
+            BROADCASTING <br /> <span className="text-[#FF6B00]">NOW</span>
           </h2>
 
           <div className="flex gap-4 items-center">
@@ -701,7 +701,7 @@ export default function Home() {
             >
               <Activity className="w-5 h-5" />
             </button>
-            <button className="px-8 py-3.5 rounded-2xl bg-[#00FF00] text-black text-[10px] font-black italic uppercase tracking-widest hover:scale-105 transition-transform shadow-[0_0_20px_rgba(0,255,0,0.2)]">
+            <button className="px-8 py-3.5 rounded-2xl bg-[#FF6B00] text-black text-[10px] font-black italic uppercase tracking-widest hover:scale-105 transition-transform shadow-[0_0_20px_rgba(255,107,0,0.2)]">
               Top Volume
             </button>
             <button className="px-8 py-3.5 rounded-2xl border border-white/10 text-white/40 text-[10px] font-black italic uppercase tracking-widest hover:text-white transition-colors">
@@ -738,7 +738,7 @@ export default function Home() {
             }).length > 0 && (
                 <section className="space-y-12">
                   <div className="flex items-center gap-6">
-                    <div className="w-1.5 h-12 bg-[#00FF00] rounded-full" />
+                    <div className="w-1.5 h-12 bg-[#FF6B00] rounded-full" />
                     <h3 className="text-4xl font-black italic tracking-tighter uppercase">Ready to Bet</h3>
                   </div>
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-20">
@@ -797,7 +797,7 @@ export default function Home() {
                           <button
                             onClick={() => handleInitialize(market)}
                             disabled={isTxPending}
-                            className={`px-10 py-5 ${isGhost ? 'bg-[#00FF00]' : 'bg-white'} text-black font-black italic uppercase tracking-widest text-xs rounded-full hover:scale-110 active:scale-95 transition-all shadow-[0_20px_40px_rgba(255,255,255,0.1)]`}
+                            className={`px-10 py-5 ${isGhost ? 'bg-[#FF6B00]' : 'bg-white'} text-black font-black italic uppercase tracking-widest text-xs rounded-full hover:scale-110 active:scale-95 transition-all shadow-[0_20px_40px_rgba(255,255,255,0.1)]`}
                           >
                             {isTxPending ? 'PROCESSING...' : isGhost ? 'Reset & Deploy V2' : 'Initialize On-Chain'}
                           </button>
@@ -895,13 +895,13 @@ export default function Home() {
                     {(() => {
                       const score = getScoreForMarket(selectedMarket.homeShort, selectedMarket.awayShort);
                       if (!score || score.status === 'PRE') return (
-                        <div className="px-4 py-1.5 bg-[#00FF00] text-black text-[9px] font-black italic tracking-widest uppercase rounded-full">
+                        <div className="px-4 py-1.5 bg-[#FF6B00] text-black text-[9px] font-black italic tracking-widest uppercase rounded-full">
                           Head to Head
                         </div>
                       );
                       return (
                         <div className="flex items-center gap-4 px-6 py-2 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl">
-                          <div className="text-2xl font-black italic text-[#00FF00]">{score.awayScore}</div>
+                          <div className="text-2xl font-black italic text-[#FF6B00]">{score.awayScore}</div>
                           <div className="flex flex-col items-center">
                             <div className="text-[10px] font-black italic text-white/40 uppercase leading-none mb-1">LIVE</div>
                             <div className="text-[8px] font-bold text-white uppercase tracking-widest">{score.clock || score.displayStatus}</div>
@@ -922,11 +922,11 @@ export default function Home() {
                   <button
                     onClick={() => setBetOutcome(0)}
                     disabled={isTxPending}
-                    className={`p-3 bg-white/[0.03] border-2 rounded-[24px] hover:border-[#00FF00]/40 transition-all group flex flex-col items-center gap-2 ${betOutcome === 0 ? 'border-[#00FF00] bg-[#00FF00]/5' : 'border-white/5'} ${isTxPending ? 'opacity-50 cursor-not-allowed' : ''}`}
+                    className={`p-3 bg-white/[0.03] border-2 rounded-[24px] hover:border-[#FF6B00]/40 transition-all group flex flex-col items-center gap-2 ${betOutcome === 0 ? 'border-[#FF6B00] bg-[#FF6B00]/5' : 'border-white/5'} ${isTxPending ? 'opacity-50 cursor-not-allowed' : ''}`}
                   >
-                    <TeamBadge name={selectedMarket.homeShort} color={selectedMarket.homeColor || "#00FF00"} logo={selectedMarket.homeLogo} size="sm" />
+                    <TeamBadge name={selectedMarket.homeShort} color={selectedMarket.homeColor || "#FF6B00"} logo={selectedMarket.homeLogo} size="sm" />
                     <div className="text-center">
-                      <div className="text-[8px] font-black italic tracking-widest text-[#00FF00] uppercase mb-0.5">TEAM A</div>
+                      <div className="text-[8px] font-black italic tracking-widest text-[#FF6B00] uppercase mb-0.5">TEAM A</div>
                       <div className="text-2xl font-black italic">{selectedMarket.probA}%</div>
                     </div>
                   </button>
@@ -952,7 +952,7 @@ export default function Home() {
                         <button
                           key={amt}
                           onClick={() => setBetAmount(amt)}
-                          className={`px-3 py-1 rounded-full border border-white/10 text-[9px] hover:bg-white/10 transition-all font-black italic ${betAmount === amt ? 'bg-[#00FF00] text-black border-[#00FF00]' : ''}`}
+                          className={`px-3 py-1 rounded-full border border-white/10 text-[9px] hover:bg-white/10 transition-all font-black italic ${betAmount === amt ? 'bg-[#FF6B00] text-black border-[#FF6B00]' : ''}`}
                         >
                           {amt} SOL
                         </button>
@@ -965,18 +965,18 @@ export default function Home() {
                       value={betAmount}
                       onChange={(e) => setBetAmount(e.target.value)}
                       placeholder="0.00"
-                      className="w-full bg-white/[0.03] border-2 border-white/10 rounded-[24px] p-5 text-3xl font-black italic focus:outline-none focus:border-[#00FF00]/50 transition-all text-center placeholder:text-white/10"
+                      className="w-full bg-white/[0.03] border-2 border-white/10 rounded-[24px] p-5 text-3xl font-black italic focus:outline-none focus:border-[#FF6B00]/50 transition-all text-center placeholder:text-white/10"
                     />
-                    <div className="absolute right-6 top-1/2 -translate-y-1/2 text-lg font-black italic text-[#00FF00]">SOL</div>
+                    <div className="absolute right-6 top-1/2 -translate-y-1/2 text-lg font-black italic text-[#FF6B00]">SOL</div>
                   </div>
                 </div>
 
                 {/* Return Estimate */}
                 {betOutcome !== null && !isNaN(parseFloat(betAmount)) && parseFloat(betAmount) > 0 && (
-                  <div className="p-5 bg-[#00FF00]/10 border border-[#00FF00]/20 rounded-[24px] flex justify-between items-center">
+                  <div className="p-5 bg-[#FF6B00]/10 border border-[#FF6B00]/20 rounded-[24px] flex justify-between items-center">
                     <div>
-                      <div className="text-[9px] font-black italic tracking-widest text-[#00FF00]/60 uppercase mb-0.5">Potential Payout</div>
-                      <div className="text-2xl font-black italic text-[#00FF00]">
+                      <div className="text-[9px] font-black italic tracking-widest text-[#FF6B00]/60 uppercase mb-0.5">Potential Payout</div>
+                      <div className="text-2xl font-black italic text-[#FF6B00]">
                         {(parseFloat(betAmount) * (100 / (betOutcome === 0 ? selectedMarket.probA : selectedMarket.probB))).toFixed(2)} SOL
                       </div>
                     </div>
@@ -992,7 +992,7 @@ export default function Home() {
                 <button
                   onClick={() => betOutcome !== null && handleBetExecution(selectedMarket.id, betOutcome)}
                   disabled={isTxPending || betOutcome === null || !betAmount || parseFloat(betAmount) <= 0 || isSuccess}
-                  className={`w-full py-4 bg-[#00FF00] text-black font-black text-xl uppercase italic tracking-widest rounded-[24px] hover:scale-[1.01] active:scale-95 transition-all shadow-[0_15px_30px_rgba(0,255,0,0.1)] ${isTxPending || betOutcome === null || isSuccess ? 'opacity-50 grayscale cursor-not-allowed' : ''}`}
+                  className={`w-full py-4 bg-[#FF6B00] text-black font-black text-xl uppercase italic tracking-widest rounded-[24px] hover:scale-[1.01] active:scale-95 transition-all shadow-[0_15px_30px_rgba(255,107,0,0.1)] ${isTxPending || betOutcome === null || isSuccess ? 'opacity-50 grayscale cursor-not-allowed' : ''}`}
                 >
                   {isSuccess ? 'POSITIONS PLACED' : isTxPending ? 'EXECUTING...' : 'Execute Position'}
                 </button>
@@ -1010,12 +1010,12 @@ export default function Home() {
                     <motion.div
                       initial={{ scale: 0, rotate: -20 }}
                       animate={{ scale: 1, rotate: 0 }}
-                      className="w-24 h-24 bg-[#00FF00] rounded-full flex items-center justify-center mb-6 shadow-[0_0_50px_rgba(0,255,0,0.4)]"
+                      className="w-24 h-24 bg-[#38BDF8] rounded-full flex items-center justify-center mb-6 shadow-[0_0_50px_rgba(56,189,248,0.4)]"
                     >
-                      <Check className="w-12 h-12 text-black stroke-[4px]" />
+                      <Check className="w-12 h-12 text-white stroke-[4px]" />
                     </motion.div>
                     <h3 className="text-3xl font-black italic uppercase tracking-tighter text-white mb-2">Prediction Placed</h3>
-                    <p className="text-[#00FF00] font-black italic tracking-widest text-[10px] uppercase animate-pulse">Arena Status: Synchronizing</p>
+                    <p className="text-[#FF6B00] font-black italic tracking-widest text-[10px] uppercase animate-pulse">Arena Status: Synchronizing</p>
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -1050,12 +1050,12 @@ export default function Home() {
               {/* Sidebar Header */}
               <div className="p-8 border-b border-white/5 flex items-center justify-between">
                 <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 bg-[#00FF00] rounded-xl flex items-center justify-center">
+                  <div className="w-10 h-10 bg-[#FF6B00] rounded-xl flex items-center justify-center">
                     <Trophy className="w-6 h-6 text-black fill-current" />
                   </div>
                   <div>
                     <h3 className="text-xl font-black italic tracking-tighter uppercase text-white">Your Arena</h3>
-                    <p className="text-[10px] font-black italic tracking-widest text-[#00FF00]/60 uppercase">My Predictions</p>
+                    <p className="text-[10px] font-black italic tracking-widest text-[#FF6B00]/60 uppercase">My Predictions</p>
                   </div>
                 </div>
                 <button
@@ -1072,12 +1072,12 @@ export default function Home() {
                   <div className="text-[10px] font-black italic tracking-widest text-white/20 uppercase mb-2">Total Power</div>
                   <div className="text-3xl font-black italic text-white leading-none">
                     {bets.reduce((acc: number, b: any) => acc + (b.amount / 1000000000), 0).toFixed(2)}
-                    <span className="text-[#00FF00] text-sm ml-1">SOL</span>
+                    <span className="text-[#FF6B00] text-sm ml-1">SOL</span>
                   </div>
                 </div>
                 <div className="p-8 bg-[#050505]">
                   <div className="text-[10px] font-black italic tracking-widest text-white/20 uppercase mb-2">Active Bets</div>
-                  <div className="text-3xl font-black italic text-[#00FF00] leading-none">
+                  <div className="text-3xl font-black italic text-[#FF6B00] leading-none">
                     {bets.filter((b: any) => !b.marketData?.status?.settled).length}
                   </div>
                 </div>
@@ -1155,13 +1155,13 @@ export default function Home() {
                                 </div>
                                 {score && score.status !== 'PRE' && (
                                   <div className="mt-1 flex items-center gap-2">
-                                    <span className="text-[10px] font-black italic text-[#00FF00]">{score.awayScore} - {score.homeScore}</span>
+                                    <span className="text-[10px] font-black italic text-[#FF6B00]">{score.awayScore} - {score.homeScore}</span>
                                     <span className="text-[8px] font-bold text-white/40 uppercase tracking-tighter">{score.clock || score.displayStatus}</span>
                                   </div>
                                 )}
                               </div>
-                              <div className={`px-3 py-1 rounded-full text-[10px] font-black italic tracking-widest uppercase transition-all duration-500 ${isClaimable ? 'bg-[#00FF00] text-black animate-pulse shadow-[0_0_20px_rgba(0,255,0,0.4)] scale-110' :
-                                (bet.claimed && isWinner) || isWinner ? 'bg-[#00FF00] text-black shadow-[0_0_30px_rgba(0,255,0,0.6)] scale-105 ml-4' :
+                              <div className={`px-3 py-1 rounded-full text-[10px] font-black italic tracking-widest uppercase transition-all duration-500 ${isClaimable ? 'bg-[#FF6B00] text-black animate-pulse shadow-[0_0_20px_rgba(255,107,0,0.4)] scale-110' :
+                                (bet.claimed && isWinner) || isWinner ? 'bg-[#FF6B00] text-black shadow-[0_0_30px_rgba(255,107,0,0.6)] scale-105 ml-4' :
                                   (bet.claimed && isLost) || isLost ? 'bg-red-500/20 text-red-500 border border-red-500/20' :
                                     isVerifying ? 'bg-amber-500/20 text-amber-500 animate-pulse' :
                                       'bg-blue-500/20 text-blue-500'
@@ -1254,7 +1254,7 @@ export default function Home() {
                           </div>
                           <div className="text-right">
                             <div className="text-[8px] font-black italic tracking-widest text-white/20 uppercase">Stake</div>
-                            <div className="text-xs font-black italic text-[#00FF00]">{(bet.amount / 1000000000).toFixed(3)} SOL</div>
+                            <div className="text-xs font-black italic text-[#FF6B00]">{(bet.amount / 1000000000).toFixed(3)} SOL</div>
                           </div>
                         </div>
 
@@ -1272,7 +1272,7 @@ export default function Home() {
                                   console.error(e);
                                 }
                               }}
-                              className="w-full py-3 bg-[#00FF00] text-black font-black italic uppercase tracking-widest text-[10px] rounded-2xl hover:scale-[1.02] active:scale-95 transition-all shadow-[0_10px_20px_rgba(0,255,0,0.2)]"
+                              className="w-full py-3 bg-[#FF6B00] text-black font-black italic uppercase tracking-widest text-[10px] rounded-2xl hover:scale-[1.02] active:scale-95 transition-all shadow-[0_10px_20px_rgba(255,107,0,0.2)]"
                             >
                               {isTxPending ? 'CLAIMING...' : 'Claim Payout'}
                             </button>

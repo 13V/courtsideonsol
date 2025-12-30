@@ -1,10 +1,10 @@
 @import "tailwindcss";
 
 @theme {
-  --color-kayo-green: #40f87f;
-  --color-kayo-sea: #052942;
-  --color-kayo-dark: #0a0a0a;
-  --color-kayo-gray: #1a1a1a;
+  --color-poly-orange: #FF6B00;
+  --color-poly-blue: #38BDF8;
+  --color-kayo-dark: #050505;
+  --color-kayo-gray: #111111;
   --color-kayo-gold: #fbbf24;
 
   --font-display: "Barlow Condensed", var(--font-sans);
@@ -30,25 +30,25 @@ body {
 }
 
 @utility arena-gradient {
-  background: radial-gradient(circle at center, var(--color-arena-green) 0%, transparent 70%);
+  background: radial-gradient(circle at center, var(--color-poly-orange) 0%, transparent 70%);
   opacity: 0.15;
 }
 
 @utility text-glow {
-  text-shadow: 0 0 20px rgba(16, 185, 129, 0.5);
+  text-shadow: 0 0 20px rgba(255, 107, 0, 0.5);
 }
 
 @keyframes neon-pulse {
   0% {
-    box-shadow: 0 0 10px rgba(0, 255, 0, 0.2), inset 0 0 5px rgba(0, 255, 0, 0.1);
+    box-shadow: 0 0 10px rgba(255, 107, 0, 0.2), inset 0 0 5px rgba(255, 107, 0, 0.1);
   }
 
   50% {
-    box-shadow: 0 0 25px rgba(0, 255, 0, 0.5), inset 0 0 10px rgba(0, 255, 0, 0.2);
+    box-shadow: 0 0 25px rgba(255, 107, 0, 0.5), inset 0 0 10px rgba(255, 107, 0, 0.2);
   }
 
   100% {
-    box-shadow: 0 0 10px rgba(0, 255, 0, 0.2), inset 0 0 5px rgba(0, 255, 0, 0.1);
+    box-shadow: 0 0 10px rgba(255, 107, 0, 0.2), inset 0 0 5px rgba(255, 107, 0, 0.1);
   }
 }
 
