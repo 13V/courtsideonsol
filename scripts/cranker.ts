@@ -67,7 +67,7 @@ const getAuthorityKeypair = (): Keypair => {
 
 async function runCranker() {
     console.log("-----------------------------------------");
-    console.log("🚀 POLYBET AUTO-CRANKER STARTING...");
+    console.log("🚀 POLYPREDICT AUTO-CRANKER STARTING...");
     console.log(`📍 RPC: ${RPC_URL}`);
     console.log(`🛠️ PROGRAM: ${PROGRAM_ID.toBase58()}`);
     console.log("-----------------------------------------");
