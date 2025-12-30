@@ -16,8 +16,7 @@ const barlow = Barlow_Condensed({
 });
 
 export const metadata: Metadata = {
-  title: "PolyPredict | Decentralized Prediction Hub",
-  description: "Experience the next level of prediction markets on Solana with PolyPredict. Fast, transparent, and decentralized.",
+  title: "PolyPredict",
 };
 
 export default function RootLayout({
