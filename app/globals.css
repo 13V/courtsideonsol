@@ -55,3 +55,19 @@ body {
 .neon-pulse-brand:hover {
   animation: neon-pulse 3s infinite ease-in-out;
 }
+
+/* Force Wallet Button Brand Alignment */
+.wallet-adapter-button-trigger {
+  background-color: #FF6B00 !important;
+  color: #000000 !important;
+  font-family: inherit !important;
+  font-weight: 900 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.1em !important;
+  border-radius: 1rem !important;
+  box-shadow: 0 0 20px rgba(255, 107, 0, 0.2) !important;
+}
+
+.wallet-adapter-button:not([disabled]):hover {
+  background-color: #e66000 !important;
+}

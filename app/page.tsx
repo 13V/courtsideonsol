@@ -652,6 +652,7 @@ export default function Home() {
       </nav>
 
       <div className="pt-32 pb-20 max-w-[1600px] mx-auto px-10">
+        {/* BUILD_VERSION: 1.0.4_CENTERED_HERO */}
 
         {/* HERO SECTION - REFINED ARCHITECTURE */}
         <section className="mb-40 relative">
