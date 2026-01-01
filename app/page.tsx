@@ -289,7 +289,7 @@ const KayoMarketCard = ({
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {/* HOME SIDE */}
           <div
             onClick={(e) => handleBet(0, e)}
@@ -598,9 +598,8 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-[#050505] text-white font-sans selection:bg-[#FF6B00] selection:text-black overflow-x-hidden">
 
-      {/* NAV */}
       <nav className="fixed top-0 w-full z-50 bg-[#050505]/80 backdrop-blur-2xl border-b border-white/5">
-        <div className="max-w-[1600px] mx-auto px-10 h-24 flex items-center justify-between">
+        <div className="max-w-[1600px] mx-auto px-6 lg:px-10 h-20 lg:h-24 flex items-center justify-between">
           <div className="flex items-center gap-6">
             <div className="flex items-center gap-4 group cursor-pointer">
               <div className="w-10 h-10 bg-[#FF6B00] rounded-xl flex items-center justify-center transform group-hover:rotate-12 transition-all">
@@ -645,17 +644,17 @@ export default function Home() {
               </button>
             </div>
             {mounted && (
-              <WalletMultiButton className="!bg-[#FF6B00] !text-black !rounded-2xl !font-black !text-xs !px-8 hover:!scale-105 transition-transform !uppercase !tracking-widest !shadow-[0_0_20px_rgba(255,107,0,0.2)]" />
+              <WalletMultiButton className="!bg-[#FF6B00] !text-black !rounded-2xl !font-black !text-[10px] lg:!text-xs !px-4 lg:!px-8 hover:!scale-105 transition-transform !uppercase !tracking-widest !shadow-[0_0_20px_rgba(255,107,0,0.2)]" />
             )}
           </div>
         </div>
       </nav>
 
-      <div className="pt-32 pb-20 max-w-[1600px] mx-auto px-10">
+      <div className="pt-28 lg:pt-32 pb-12 lg:pb-20 max-w-[1600px] mx-auto px-6 lg:px-10">
         {/* BUILD_VERSION: 1.0.4_CENTERED_HERO */}
 
         {/* HERO SECTION - REFINED ARCHITECTURE */}
-        <section className="mb-40 relative">
+        <section className="mb-20 lg:mb-40 relative">
           {/* Background Ambient FX */}
           <div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_center,rgba(255,107,0,0.05)_0%,transparent_70%)]" />
@@ -676,7 +675,7 @@ export default function Home() {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.1 }}
-              className="text-[9rem] lg:text-[14rem] font-black italic tracking-tighter uppercase leading-[0.7] drop-shadow-[0_20px_50px_rgba(255,107,0,0.15)]"
+              className="text-[4.5rem] md:text-[9rem] lg:text-[14rem] font-black italic tracking-tighter uppercase leading-[0.75] lg:leading-[0.7] drop-shadow-[0_20px_50px_rgba(255,107,0,0.15)]"
             >
               <span className="text-white block">POLY</span>
               <span className="text-[#FF6B00] text-glow inline-block">PREDICT</span>
@@ -686,32 +685,32 @@ export default function Home() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3 }}
-              className="text-2xl lg:text-3xl text-white/40 max-w-3xl leading-relaxed font-medium italic"
+              className="text-lg lg:text-3xl text-white/40 max-w-3xl leading-relaxed font-medium italic"
             >
               High-fidelity oracle protocol for precision forecasting. <br className="hidden lg:block" />
               Transforming market volatility into verifiable intelligence on Solana.
             </motion.p>
 
             {/* QUICK STATS / HUM */}
-            <div className="flex items-center gap-12 pt-8">
+            <div className="flex flex-wrap items-center justify-center gap-6 lg:gap-12 pt-8">
               <div className="flex flex-col items-center">
                 <span className="text-[10px] font-black italic text-[#FF6B00]/60 uppercase tracking-widest mb-2">ACTIVE NODES</span>
-                <span className="text-2xl font-black italic text-white leading-none">4,096</span>
+                <span className="text-xl lg:text-2xl font-black italic text-white leading-none">4,096</span>
               </div>
-              <div className="w-px h-10 bg-white/5" />
+              <div className="hidden lg:block w-px h-10 bg-white/5" />
               <div className="flex flex-col items-center">
                 <span className="text-[10px] font-black italic text-[#FF6B00]/60 uppercase tracking-widest mb-2">LATENCY</span>
-                <span className="text-2xl font-black italic text-white leading-none">12.4ms</span>
+                <span className="text-xl lg:text-2xl font-black italic text-white leading-none">12.4ms</span>
               </div>
-              <div className="w-px h-10 bg-white/5" />
+              <div className="hidden lg:block w-px h-10 bg-white/5" />
               <div className="flex flex-col items-center">
                 <span className="text-[10px] font-black italic text-[#FF6B00]/60 uppercase tracking-widest mb-2">INTEGRITY</span>
-                <span className="text-2xl font-black italic text-[#38BDF8] leading-none">99.9%</span>
+                <span className="text-xl lg:text-2xl font-black italic text-[#38BDF8] leading-none">99.9%</span>
               </div>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-32 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mt-16 lg:mt-32 max-w-6xl mx-auto">
             {[
               { step: "01", title: "Synchronize", desc: "Connect your Solana wallet to the oracle network." },
               { step: "02", title: "Analyze", desc: "Browse high-fidelity tiers and market volatility." },
@@ -736,7 +735,7 @@ export default function Home() {
 
         {/* BOARDCAST HEADER */}
         <div className="flex items-end justify-between mb-16 border-b border-white/5 pb-8">
-          <h2 className="text-6xl md:text-8xl font-black italic tracking-tighter text-white uppercase leading-[0.8]">
+          <h2 className="text-4xl md:text-8xl font-black italic tracking-tighter text-white uppercase leading-[0.8]">
             BROADCASTING <br /> <span className="text-[#FF6B00]">NOW</span>
           </h2>
 
@@ -965,7 +964,7 @@ export default function Home() {
               </div>
 
               <div className="p-4 space-y-3">
-                <div className="grid grid-cols-2 gap-3">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <button
                     onClick={() => setBetOutcome(0)}
                     disabled={isTxPending}

@@ -17,6 +17,19 @@ const barlow = Barlow_Condensed({
 
 export const metadata: Metadata = {
   title: "PolyPredict",
+  description: "High-fidelity oracle protocol for precision forecasting.",
+  openGraph: {
+    title: "PolyPredict",
+    description: "High-fidelity oracle protocol for precision forecasting.",
+    images: ["/opengraph-image.png"],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "PolyPredict",
+    description: "High-fidelity oracle protocol for precision forecasting.",
+    images: ["/opengraph-image.png"],
+  },
 };
 
 export default function RootLayout({
