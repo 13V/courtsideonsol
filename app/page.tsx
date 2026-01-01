@@ -644,7 +644,14 @@ export default function Home() {
               </button>
             </div>
             {mounted && (
-              <WalletMultiButton className="!bg-[#FF6B00] !text-black !rounded-2xl !font-black !text-[10px] lg:!text-xs !px-4 lg:!px-8 hover:!scale-105 transition-transform !uppercase !tracking-widest !shadow-[0_0_20px_rgba(255,107,0,0.2)]" />
+              <WalletMultiButton className="!bg-[#FF6B00] !text-black !rounded-2xl !font-black !text-[10px] lg:!text-xs !px-4 lg:!px-8 hover:!scale-105 transition-transform !uppercase !tracking-widest !shadow-[0_0_20px_rgba(255,107,0,0.2)]">
+                {!connected && (
+                  <>
+                    <span className="hidden lg:inline">SELECT WALLET</span>
+                    <span className="lg:hidden">WALLET</span>
+                  </>
+                )}
+              </WalletMultiButton>
             )}
           </div>
         </div>
